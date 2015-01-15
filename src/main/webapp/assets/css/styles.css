@@ -1,7 +1,7 @@
 body {
     padding-top: 0px;
     overflow: hidden;
-    background-color: #AA7FF5;
+    background-color: #343838;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -17,6 +17,21 @@ body {
     display: inline-block;
 }
 
+.title {
+    margin-bottom: 40px;
+    width: 140px;
+    color: #00DFFC;
+}
+
+.btn-primary {
+    background-color: #00B4CC;
+    border: 1px solid #005F6B;
+}
+
+.btn-primary:hover {
+    background-color: #008C9E;
+    border: 1px solid #005F6B;
+}
 
 .btn {
     font-size: 1.5em;

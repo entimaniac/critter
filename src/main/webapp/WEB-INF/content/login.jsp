@@ -22,7 +22,6 @@
             margin-top: 40px;
             background-color: #343838;
         }
-
         .center-block {
             margin-left: auto;
             margin-right: auto;
@@ -30,18 +29,15 @@
         .user-form {
             max-width: 300px;
         }
-
         .title {
             margin-bottom: 40px;
             width: 140px;
             color: #00DFFC;
         }
-
         .btn-primary {
             background-color: #00B4CC;
             border: 1px solid #005F6B;
         }
-
         .btn-primary:hover {
             background-color: #008C9E;
             border: 1px solid #005F6B;

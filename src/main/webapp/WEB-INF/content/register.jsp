@@ -17,7 +17,7 @@
     <style>
         body {
             margin-top: 40px;
-            background-color: #95E4FC;
+            background-color: #343838;
         }
 
         .center-block {
@@ -31,11 +31,6 @@
         .title {
             width: 140px;
             margin-bottom: 40px;
-        }
-
-        .btn-primary {
-            background-color: #FCAD95;
-            border: 1px solid #FF906E;
         }
 
     </style>
@@ -68,7 +63,7 @@
                 <input class="form-control" id="confirm-password-field" name="confirmPassword" type="password" placeholder="RETYPE PASSWORD">
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg">SUBMIT</button>
-            <a class="btn btn-danger btn-block btn-lg" href="${pageContext.request.contextPath}/login">CANCEL</a>
+            <a class="btn btn-default btn-block btn-lg" href="${pageContext.request.contextPath}/login">CANCEL</a>
 
         </form>
     </div>
