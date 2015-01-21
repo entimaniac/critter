@@ -24,7 +24,6 @@
                         <li class="divider"></li>
                         <li><a href="#">Join A Group</a></li>
                     </ul>
-
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings<span class="caret"></span></a>
