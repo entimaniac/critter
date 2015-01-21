@@ -20,7 +20,6 @@
     <style>
         body {
             margin-top: 40px;
-            background-color: #343838;
         }
         .center-block {
             margin-left: auto;

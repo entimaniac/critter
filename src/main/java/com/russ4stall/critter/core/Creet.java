@@ -14,7 +14,6 @@ public class Creet {
     private boolean sentToTwitter;
     private Score score;
 
-
     public int getId() {
         return id;
     }
