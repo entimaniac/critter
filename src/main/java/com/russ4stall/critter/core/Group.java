@@ -7,7 +7,17 @@ public class Group {
     private int id;
     private String name;
     private String twitterHandle;
-    private String owner;
+    private int owner;
+
+    public Group(int id, String name, String twitterHandle, int owner) {
+        this.id = id;
+        this.name = name;
+        this.twitterHandle = twitterHandle;
+        this.owner = owner;
+    }
+
+    public Group() {
+    }
 
     public int getId() {
         return id;
@@ -33,11 +43,11 @@ public class Group {
         this.twitterHandle = twitterHandle;
     }
 
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 }
