@@ -49,6 +49,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         );
 
         session.put("user", user);
+
+        userDao.close();
         return SUCCESS;
     }
 

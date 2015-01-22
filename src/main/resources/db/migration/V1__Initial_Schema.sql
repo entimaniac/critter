@@ -16,7 +16,7 @@ CREATE TABLE `Creet` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `Group` (
+CREATE TABLE `Groupe` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `twitter_handle` VARCHAR(45) NULL,

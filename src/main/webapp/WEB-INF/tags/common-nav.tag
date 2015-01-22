@@ -23,6 +23,7 @@
                         <li><a href="#">Another action</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Join A Group</a></li>
+                        <li><a href="${pageContext.request.contextPath}/create-group">Create A Group</a></li>
                     </ul>
                 </li>
                 <li>

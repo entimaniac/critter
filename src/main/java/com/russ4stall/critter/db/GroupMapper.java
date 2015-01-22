@@ -12,6 +12,6 @@ import java.sql.SQLException;
  */
 public class GroupMapper implements ResultSetMapper<Group> {
     public Group map(int i, ResultSet r, StatementContext statementContext) throws SQLException {
-        return new Group(r.getInt("id"), r.getString("name"), r.getString("twitterHandle"), r.getInt("owner"));
+        return new Group(r.getInt("id"), r.getString("name"), r.getString("twitter_handle"), r.getInt("owner"));
     }
 }

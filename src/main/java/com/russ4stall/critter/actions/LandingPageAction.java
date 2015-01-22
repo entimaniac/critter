@@ -17,14 +17,7 @@ public class LandingPageAction extends ActionSupport implements SessionAware {
     Map<String, Object> session;
 
     public String input() {
-        System.out.println("test");
         return INPUT;
-    }
-
-    @Override
-    public String execute() throws Exception {
-        System.out.println("test");
-        return SUCCESS;
     }
 
     public void setSession(Map<String, Object> session) {
