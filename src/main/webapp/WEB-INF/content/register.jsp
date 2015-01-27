@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 
-<%--@elvariable id="action" type="com.russ4stall.jorb.actions.RegisterAction"--%>
+<%--@elvariable id="action" type="com.russ4stall.critter.actions.RegisterAction"--%>
 
 <html>
 <head>

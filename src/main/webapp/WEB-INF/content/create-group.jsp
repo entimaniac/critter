@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--@elvariable id="action" type="com.russ4stall.jorb.actions.CreateGroupAction"--%>
+<%--@elvariable id="action" type="com.russ4stall.critter.actions.CreateGroupAction"--%>
 
 <html>
 <head>
@@ -29,7 +30,7 @@
                 <div class="form-group">
                     <input class="form-control" id="twitter-handle-field" name="twitterHandle" type="text" value="${action.twitterHandle}" placeholder="TWITTER HANDLE">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg">SUBMIT</button>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">CREATE GROUP</button>
                 <a class="btn btn-default btn-block btn-lg" href="${pageContext.request.contextPath}/login">CANCEL</a>
             </form>
         </div>

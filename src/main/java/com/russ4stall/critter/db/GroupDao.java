@@ -1,6 +1,7 @@
 package com.russ4stall.critter.db;
 
 import com.russ4stall.critter.core.Group;
+import com.russ4stall.critter.core.User;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -20,6 +21,12 @@ public interface GroupDao {
 
     @SqlQuery("SELECT * FROM Groupe")
     List<Group> getAllGroups();
+
+    @SqlQuery("SELECT * FROM Groupe WHERE name LIKE /':searchTerm%/'")
+    List<Group> searchForGroup(@Bind("searchTerm") String searchTerm);
+
+    @SqlQuery("SELECT * FROM Groupe WHERE name = :name")
+    Group getGroupByName(@Bind("name") String name);
 
     void close();
 }

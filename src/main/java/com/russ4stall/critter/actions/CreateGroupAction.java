@@ -9,8 +9,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 /**
- * Created by russ on 1/15/15.
+ * Created by russ on 1/27/15.
  */
 @Result(location = "/landing-page", type = "redirect")
 public class CreateGroupAction extends ActionSupport implements SessionAware {
@@ -24,15 +26,32 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         return INPUT;
     }
 
+
     @Override
     public void validate() {
-        super.validate();
+        if (isEmpty(name)) {
+            addFieldError("name", "Don't leave name blank dummy!");
+            return;
+        }
+
+        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
+
+        if (groupDao.getGroupByName(name) != null) {
+            addFieldError("name", "Already exists poser!");
+            return;
+        }
+
     }
 
     @Override
     public String execute() throws Exception {
         GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-        groupDao.insert(name, twitterHandle, ((User) session.get("user")).getId());
+
+
+        User user = (User) session.get("user");
+
+        groupDao.insert(name, twitterHandle, user.getId());
+
 
         groupDao.close();
         return SUCCESS;

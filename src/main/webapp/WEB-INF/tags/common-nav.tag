@@ -17,12 +17,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Groups<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Groups<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Join A Group</a></li>
+                        <li><a href="${pageContext.request.contextPath}/search-group">Join A Group</a></li>
                         <li><a href="${pageContext.request.contextPath}/create-group">Create A Group</a></li>
                     </ul>
                 </li>
