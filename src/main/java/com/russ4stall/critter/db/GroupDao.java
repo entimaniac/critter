@@ -22,8 +22,8 @@ public interface GroupDao {
     @SqlQuery("SELECT * FROM Groupe")
     List<Group> getAllGroups();
 
-    @SqlQuery("SELECT * FROM Groupe WHERE name LIKE /':searchTerm%/'")
-    List<Group> searchForGroup(@Bind("searchTerm") String searchTerm);
+    @SqlQuery("SELECT * FROM Groupe WHERE name LIKE :searchTerm")
+    List<Group> searchForGroupsByName(@Bind("searchTerm") String searchTerm);
 
     @SqlQuery("SELECT * FROM Groupe WHERE name = :name")
     Group getGroupByName(@Bind("name") String name);

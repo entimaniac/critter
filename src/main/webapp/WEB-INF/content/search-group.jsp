@@ -32,10 +32,8 @@
     <div id="groups-list">
         <c:forEach var="group" items="${action.groups}">
             <div class="group-description">
-                <a href="${pageContext.request.contextPath}/create-group!test">${group.name}</a>
-
+                <a href="/join-group?groupId=${group.id}">${group.name}</a>
             </div>
-
         </c:forEach>
 
 
