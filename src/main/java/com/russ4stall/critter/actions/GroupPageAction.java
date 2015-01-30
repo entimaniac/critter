@@ -3,6 +3,7 @@ package com.russ4stall.critter.actions;
 import com.opensymphony.xwork2.ActionSupport;
 import com.russ4stall.critter.core.Creet;
 import com.russ4stall.critter.core.Group;
+import com.russ4stall.critter.db.CreetDao;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupDao;
 
@@ -23,7 +24,11 @@ public class GroupPageAction extends ActionSupport {
         group = groupDao.getGroupById(groupId);
 
         //todo: get all creets associated with group
+        CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
+        creets = creetDao.getCreetsByGroup(groupId);
 
+        creetDao.close();
+        groupDao.close();
         return INPUT;
     }
 

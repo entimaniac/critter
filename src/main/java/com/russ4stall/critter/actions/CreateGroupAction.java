@@ -65,6 +65,7 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
 
         groupDao.close();
         return SUCCESS;
+
     }
 
     public String getName() {

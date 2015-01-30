@@ -1,5 +1,5 @@
 body {
-    padding-top: 20px;
+    padding-top: 50px;
     overflow: hidden;
     background-color: #343838;
     max-width: 1000px;
@@ -63,6 +63,13 @@ form label {
 .form-control {
     height:2.5em;
     font-size: 1.5em;
+
+}
+
+.creet {
+    background-color: white;
+    border-radius: 2px;
+    margin-bottom: 2px;
 
 }
 

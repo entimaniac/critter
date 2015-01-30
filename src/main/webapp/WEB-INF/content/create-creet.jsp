@@ -59,7 +59,7 @@
                 </select>
             <br/>
             <button type="submit" class="btn btn-primary btn-block btn-lg">SUBMIT</button>
-            <a class="btn btn-default btn-block btn-lg" href="${pageContext.request.contextPath}/landing-page">CANCEL</a>
+            <a class="btn btn-default btn-block btn-lg" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL</a>
 
         </form>
     </div>
