@@ -40,7 +40,7 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
             addFieldError("name", "Already exists poser!");
             return;
         }
-
+        groupDao.close();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
 
         User user = (User) session.get("user");
 
-        groupDao.insert(name, twitterHandle, user.getId());
+        groupDao.createGroup(name, twitterHandle, user.getId());
 
 
         groupDao.close();

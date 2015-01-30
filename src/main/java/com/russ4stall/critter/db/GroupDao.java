@@ -17,7 +17,7 @@ import java.util.List;
 public interface GroupDao {
     @SqlUpdate("insert into Groupe (name, twitter_handle, owner) values (:name, :twitterHandle, :owner)")
     @GetGeneratedKeys
-    int insert(@Bind("name") String name, @Bind("twitterHandle") String twitterHandle, @Bind("owner") int owner);
+    int createGroup(@Bind("name") String name, @Bind("twitterHandle") String twitterHandle, @Bind("owner") int owner);
 
     @SqlQuery("SELECT * FROM Groupe")
     List<Group> getAllGroups();
@@ -27,6 +27,17 @@ public interface GroupDao {
 
     @SqlQuery("SELECT * FROM Groupe WHERE name = :name")
     Group getGroupByName(@Bind("name") String name);
+
+    /**
+     * Creates a relationship between a user and a group
+     * in the UserGroupe table.
+     *
+     * @param userId
+     * @param groupId
+     */
+    @SqlUpdate("insert into UserGroupe (user_id, group_id) values (:userId, :groupId)")
+    void joinGroup(@Bind("userId") int userId, @Bind("groupId") int groupId);
+
 
     void close();
 }

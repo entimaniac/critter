@@ -23,6 +23,10 @@ CREATE TABLE `Groupe` (
   `owner` INT NOT NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `UserGroupe` (
+  `user_id` INT NOT NULL,
+  `group_id` INT NOT NULL);
+
 CREATE TABLE `Upvote` (
   `creet_id` INT NOT NULL,
   `user_id` INT NOT NULL,
