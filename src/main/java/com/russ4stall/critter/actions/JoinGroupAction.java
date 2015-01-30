@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Result(location = "/landing-page", type = "redirect")
 public class JoinGroupAction extends ActionSupport implements SessionAware{
-    private int groupId;
+    private String groupId;
 
     private Map<String, Object> session;
 
@@ -29,7 +29,7 @@ public class JoinGroupAction extends ActionSupport implements SessionAware{
         return SUCCESS;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 

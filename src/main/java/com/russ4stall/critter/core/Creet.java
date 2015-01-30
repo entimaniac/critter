@@ -6,19 +6,32 @@ import java.sql.Timestamp;
  * Created by russellf on 10/24/2014.
  */
 public class Creet {
-    private int id;
+    private String id;
     private String message;
     private String groupId;
     private String userId;
     private Timestamp timestamp;
     private boolean sentToTwitter;
-    private Score score;
+    private int score;
 
-    public int getId() {
+    public Creet(String id, String message, String groupId, String userId, Timestamp timestamp, boolean sentToTwitter, int score) {
+        this.id = id;
+        this.message = message;
+        this.groupId = groupId;
+        this.userId = userId;
+        this.timestamp = timestamp;
+        this.sentToTwitter = sentToTwitter;
+        this.score = score;
+    }
+
+    public Creet() {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,11 +75,11 @@ public class Creet {
         this.sentToTwitter = sentToTwitter;
     }
 
-    public Score getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(Score score) {
+    public void setScore(int score) {
         this.score = score;
     }
 }

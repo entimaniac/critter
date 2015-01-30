@@ -1,5 +1,5 @@
-CREATE  TABLE `critter`.`User` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE `User` (
+  `id` VARCHAR(36) NOT NULL,
   `name` VARCHAR(45) NOT NULL ,
   `email` VARCHAR(45) NOT NULL ,
   `password` VARCHAR(65) NOT NULL ,
@@ -7,35 +7,35 @@ CREATE  TABLE `critter`.`User` (
   UNIQUE INDEX `email_UNIQUE` (`email` ASC));
 
 CREATE TABLE `Creet` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` VARCHAR(36) NOT NULL,
   `message` varchar(120) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
+  `user_id` VARCHAR(36) NOT NULL,
+  `group_id` VARCHAR(36) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `sent_to_twitter` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Groupe` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` VARCHAR(36) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `twitter_handle` VARCHAR(45) NULL,
-  `owner` INT NOT NULL,
+  `owner` VARCHAR(36) NOT NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `UserGroupe` (
-  `user_id` INT NOT NULL,
-  `group_id` INT NOT NULL);
+  `user_id` VARCHAR(36) NOT NULL,
+  `group_id` VARCHAR(36) NOT NULL);
 
 CREATE TABLE `Upvote` (
-  `creet_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  `timestamp` TIMESTAMP NOT NULL,
+  `creet_id` VARCHAR(36) NOT NULL,
+  `user_id` VARCHAR(36) NOT NULL,
+  `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`creet_id`));
 
 CREATE TABLE `Downvote` (
-  `creet_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
+  `creet_id` VARCHAR(36) NOT NULL,
+  `user_id` VARCHAR(36) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`creet_id`));
 

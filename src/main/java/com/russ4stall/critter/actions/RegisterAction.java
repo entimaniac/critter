@@ -12,6 +12,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Map;
+import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -42,12 +43,12 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
         String hashPass = BCrypt.hashpw(password, BCrypt.gensalt());
         User user = new User(
-                userDao.insert(name, email, hashPass),
+                UUID.randomUUID().toString(),
                 name,
                 email,
                 hashPass
         );
-
+        userDao.createUser(user.getId(), name, email, hashPass);
         session.put("user", user);
 
         userDao.close();

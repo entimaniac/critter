@@ -4,12 +4,12 @@ package com.russ4stall.critter.core;
  * Created by russellf on 10/24/2014.
  */
 public class Group {
-    private int id;
+    private String id;
     private String name;
     private String twitterHandle;
-    private int owner;
+    private String owner;
 
-    public Group(int id, String name, String twitterHandle, int owner) {
+    public Group(String id, String name, String twitterHandle, String owner) {
         this.id = id;
         this.name = name;
         this.twitterHandle = twitterHandle;
@@ -19,11 +19,11 @@ public class Group {
     public Group() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,11 +43,11 @@ public class Group {
         this.twitterHandle = twitterHandle;
     }
 
-    public int getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(int owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 }

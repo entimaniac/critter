@@ -15,14 +15,11 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
  */
 @RegisterMapper(UserMapper.class)
 public interface UserDao {
+    @SqlUpdate("insert into User (id, name, email, password) values (:id, :name, :email, :password)")
+    void createUser(@Bind("id") String id, @Bind("name") String name, @Bind("email") String email, @Bind("password") String password);
+
     @SqlQuery("SELECT * FROM User WHERE email = :email")
     User getUserByEmail(@Bind("email") String email);
-
-    @SqlUpdate("insert into User (name, email, password) values (:name, :email, :password)")
-    @GetGeneratedKeys
-    int insert(@Bind("name") String name, @Bind("email") String email, @Bind("password") String password);
-
-
 
     void close();
 }
