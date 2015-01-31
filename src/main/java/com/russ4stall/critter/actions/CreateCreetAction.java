@@ -37,10 +37,9 @@ public class CreateCreetAction extends ActionSupport implements SessionAware {
         creet.setId(UUID.randomUUID().toString());
         creet.setGroupId(groupId);
         creet.setMessage(message);
-        creet.setUserId(user.getId());
+        creet.setAuthor(user);
 
         creetDao.createCreet(creet.getId(), message, groupId, user.getId());
-
 
         return SUCCESS;
     }

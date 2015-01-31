@@ -16,18 +16,58 @@
     <%--<img src="https://scontent-a-mia.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10641016_1487560258161099_2969431546394646204_n.jpg?oh=bf4d34a275f1983197c9df96f7c4be9d&oe=5510E236" height="60%" width="100%"/>--%>
 </div>
 
-<h1>${action.group.name}</h1>
+<h1 style="color: lightblue">${action.group.name}</h1>
 
 <a href="${pageContext.request.contextPath}/create-creet?groupId=${group.id}">Post a creet</a>
 
 <c:forEach var="creet" items="${action.creets}">
-    <div class="creet">
-        ${creet.timestamp}<br/>
-        ${creet.message}
-
-    </div>
+    <app:creet creet="${creet}"/>
 
 </c:forEach>
+
+
+<script type="text/javascript">
+    function initCreet() {
+
+        $(".creet").each(function () {
+            var creet = $(this);
+            var creetId = creet.attr('id');
+            creet.on("swipeleft",function(){
+                alert("lefty loosey");
+            });
+            creet.on("swiperight",function(){
+                alert("righty tighty");
+            });
+
+            /*creet.find('.upvote-btn').click(function() {
+
+              if (confirm("you wanna upvote this shit?")){
+                  $.ajax({
+                      type: "POST",
+                      url: "${pageContext.request.contextPath}/upvote",
+                      data: { creetId: creetId}
+                  })
+                          .done(function( msg ) {
+                              alert( "Data Saved: " + msg );
+                          });
+
+              }
+
+            });*/
+
+        });
+    }
+
+    $(document).ready(function() {
+        initCreet();
+
+
+
+    });
+
+
+
+</script>
 
 </body>
 </html>

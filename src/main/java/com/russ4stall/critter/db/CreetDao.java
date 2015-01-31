@@ -17,21 +17,28 @@ public interface CreetDao {
     @SqlUpdate("insert into Creet (id, message, group_id, user_id) values (:id, :message, :groupId, :userId)")
     void createCreet(@Bind("id") String id, @Bind("message") String message, @Bind("groupId") String groupId, @Bind("userId") String userId);
 
-    @SqlQuery("SELECT *, \n" +
+    @SqlQuery("SELECT c.*, \n" +
             "(COALESCE((SELECT count(*) FROM Upvote \n" +
             "WHERE creet_id = c.id\n" +
-            "GROUP BY id),0) -\n" +
+            "GROUP BY c.id),0) -\n" +
             "COALESCE((SELECT count(*) FROM Downvote \n" +
             "WHERE creet_id = c.id\n" +
-            "GROUP BY id),0)\n" +
-            ") as score\n" +
+            "GROUP BY c.id),0)\n" +
+            ") as score, u.name, u.email, u.password\n" +
             "FROM Creet c \n" +
+            "JOIN User u ON c.user_id = u.id\n" +
             "WHERE group_id = :groupId\n" +
             ";")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
-    @SqlQuery("SELECT * FROM Creet WHERE user_id = :userId")
+    @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")
     List<Creet> getCreetsByAuthor(@Bind("groupId") String userId);
+
+    @SqlUpdate("INSERT INTO Upvote (creet_id, user_id) values (:creetId, :userId)")
+    void upvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
+
+    @SqlUpdate("INSERT INTO Downvote (creet_id, user_id) values (:creetId, :userId)")
+    void downvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
 
     void close();
 }

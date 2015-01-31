@@ -66,12 +66,53 @@ form label {
 
 }
 
-.creet {
+.creet-container {
     background-color: white;
     border-radius: 2px;
     margin-bottom: 2px;
+    height: 68px;
+    width:100%;
+    padding: 4px;
+    float: left;
+}
+
+.creet-container .score-container {
+    float:left;
+    width:auto;
 
 }
+
+.creet-container .creet-score {
+    text-align: center;
+}
+
+.upvote-btn {
+    color: green;
+}
+
+.downvote-btn {
+    color: red;
+}
+
+.creet-container .creet-message {
+    float:left;
+
+}
+
+.creet-container .creet-header {
+    /*float: left;*/
+}
+
+.creet-container .creet-author {
+    width:auto;
+    float: left;
+    color: gray;
+}
+
+.creet-container .creet-timestamp {
+    float:right;
+}
+
 
 #main-wrapper {
     height: 100%;
@@ -87,10 +128,11 @@ form label {
 
 @media (max-width: 992px) {
     body {
-        padding-top: 0px;
+        padding-top: 50px;
     }
 
 }
+
 @media (min-width: 992px) {
     #main-wrapper {
         float:right;

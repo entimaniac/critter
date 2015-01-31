@@ -9,16 +9,16 @@ public class Creet {
     private String id;
     private String message;
     private String groupId;
-    private String userId;
+    private User author;
     private Timestamp timestamp;
     private boolean sentToTwitter;
     private int score;
 
-    public Creet(String id, String message, String groupId, String userId, Timestamp timestamp, boolean sentToTwitter, int score) {
+    public Creet(String id, String message, String groupId, User author, Timestamp timestamp, boolean sentToTwitter, int score) {
         this.id = id;
         this.message = message;
         this.groupId = groupId;
-        this.userId = userId;
+        this.author = author;
         this.timestamp = timestamp;
         this.sentToTwitter = sentToTwitter;
         this.score = score;
@@ -51,12 +51,12 @@ public class Creet {
         this.groupId = groupId;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public Timestamp getTimestamp() {
