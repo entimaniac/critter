@@ -27,7 +27,7 @@ public interface GroupDao {
 
     @SqlQuery("SELECT * FROM Groupe g\n" +
             "JOIN UserGroupe ug ON g.id = ug.group_id\n" +
-            "WHERE ug.user_id = '82282b25-aaa7-4cde-8b94-fa981625ed18'\n" +
+            "WHERE ug.user_id = :userId\n" +
             ";")
     List<Group> getUserGroups(@Bind("userId") String userId);
 

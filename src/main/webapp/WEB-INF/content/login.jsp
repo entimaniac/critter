@@ -26,14 +26,6 @@
             width: 140px;
             color: #00DFFC;
         }
-        .btn-primary {
-            background-color: #00B4CC;
-            border: 1px solid #005F6B;
-        }
-        .btn-primary:hover {
-            background-color: #008C9E;
-            border: 1px solid #005F6B;
-        }
     </style>
 
 
@@ -53,15 +45,10 @@
                 <span class="text-danger">${error.value}</span><br/>
             </c:forEach>
             <form role="form" action="${pageContext.request.contextPath}/login" method="post">
-                <div class="form-group">
-                    <input class="form-control" id="email-field" name="email" type="email" value="${action.email}" placeholder="EMAIL">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" id="password-field" name="password" type="password" placeholder="PASSWORD">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg">SIGN IN</button>
-                <a class="btn btn-default btn-block btn-lg" href="${pageContext.request.contextPath}/register">CREATE AN ACCOUNT</a>
-
+                <input id="email-field" name="email" type="email" value="${action.email}" placeholder="EMAIL">
+                <input id="password-field" name="password" type="password" placeholder="PASSWORD">
+                <button type="submit">SIGN IN</button>
+                <a class="ui-btn ui-shadow ui-btn-corner-all" href="${pageContext.request.contextPath}/register">CREATE AN ACCOUNT</a>
             </form>
         </div>
     </div>

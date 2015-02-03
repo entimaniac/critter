@@ -1,18 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-
-<div data-role="navbar">
-    <ul>
-        <li><a href="${pageContext.request.contextPath}/my-groups">MY GROUPS</a></li>
-        <li><a href="${pageContext.request.contextPath}/create-creet?groupId=${group.id}">POST</a></li>
-        <li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
-    </ul>
-</div><!-- /navbar -->
-
-<%--
-
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -61,4 +48,3 @@
         </div>
     </div>
 </nav>
---%>

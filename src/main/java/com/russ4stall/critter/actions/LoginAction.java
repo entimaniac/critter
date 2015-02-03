@@ -2,17 +2,14 @@ package com.russ4stall.critter.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import com.russ4stall.critter.core.Group;
 import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.db.DbiFactory;
-import com.russ4stall.critter.db.GroupDao;
 import com.russ4stall.critter.db.UserDao;
 import com.russ4stall.critter.utils.LoginNotRequired;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
@@ -66,12 +63,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
         User user = userDao.getUserByEmail(email);
 
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-        List<Group> groups = groupDao.getUserGroups(user.getId());
-
         session.put("user", user);
-        session.put("userGroups", groups);
-
 
         userDao.close();
         return SUCCESS;
