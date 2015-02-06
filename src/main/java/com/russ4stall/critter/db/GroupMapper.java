@@ -15,6 +15,7 @@ public class GroupMapper implements ResultSetMapper<Group> {
         return new Group(r.getString("id"),
                 r.getString("name"),
                 r.getString("twitter_handle"),
+                r.getString("description"),
                 r.getString("owner")
         );
     }

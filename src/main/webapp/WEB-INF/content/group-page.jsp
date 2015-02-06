@@ -7,18 +7,17 @@
 
 <html>
 <head>
-    <app:common-head/>
+    <app:head-common/>
     <title>CRITTER</title>
 </head>
 <body>
-<app:common-nav/>
-<div>
-    <%--<img src="https://scontent-a-mia.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10641016_1487560258161099_2969431546394646204_n.jpg?oh=bf4d34a275f1983197c9df96f7c4be9d&oe=5510E236" height="60%" width="100%"/>--%>
-</div>
+<app:nav-common/>
 
-<h1 style="color: lightblue">${action.group.name}</h1>
-
-<a href="${pageContext.request.contextPath}/create-creet?groupId=${group.id}">Post a creet</a>
+<h1 style="color: cyan">${action.group.name}</h1>
+<h3>${action.group.twitterHandle}</h3>
+<p>
+    ${action.group.description}
+</p>
 
 <c:forEach var="creet" items="${action.creets}">
     <app:creet creet="${creet}"/>
@@ -38,22 +37,34 @@
             creet.on("swiperight",function(){
                 alert("righty tighty");
             });
-
-            /*creet.find('.upvote-btn').click(function() {
-
-              if (confirm("you wanna upvote this shit?")){
+            //Upvote functionality
+            creet.find('.upvote-btn').click(function() {
                   $.ajax({
                       type: "POST",
                       url: "${pageContext.request.contextPath}/upvote",
                       data: { creetId: creetId}
                   })
                           .done(function( msg ) {
-                              alert( "Data Saved: " + msg );
+                              //todo: add upvote animation
+                              var score = +(creet.find('.creet-score').text());
+                              score++;
+                              creet.find('.creet-score').text(score);
                           });
-
-              }
-
-            });*/
+            });
+            //Downvote functionality
+            creet.find('.downvote-btn').click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "${pageContext.request.contextPath}/downvote",
+                    data: { creetId: creetId}
+                })
+                        .done(function( msg ) {
+                            //todo: add downvote animation
+                            var score = +(creet.find('.creet-score').text());
+                            score--;
+                            creet.find('.creet-score').text(score);
+                        });
+            });
 
         });
     }

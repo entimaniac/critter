@@ -6,18 +6,15 @@
 
 <html>
 <head>
-    <app:common-head/>
+    <app:head-common/>
     <title>CRITTER</title>
 </head>
 <body>
-<app:common-nav/>
+<app:nav-back title="GROUP SEARCH"/>
 
 <div class="container">
-    <div class="row">
-        <div class="center-block title" >
+
             <h2>SEARCH FOR A GROUP</h2>
-        </div>
-    </div>
 
     <div class="center-block user-form">
 

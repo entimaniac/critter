@@ -18,10 +18,13 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by russ on 1/27/15.
  */
-@Result(location = "/landing-page", type = "redirect")
+@Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class CreateGroupAction extends ActionSupport implements SessionAware {
     private String name;
     private String twitterHandle;
+    private String description;
+
+    private String groupId;
 
     private Map<String, Object> session;
 
@@ -52,16 +55,12 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
 
         User user = (User) session.get("user");
-        Group group = new Group(UUID.randomUUID().toString(), name, twitterHandle, user.getId());
-        groupDao.createGroup(group.getId(), name, twitterHandle, user.getId());
+        groupId = UUID.randomUUID().toString();
+        Group group = new Group(groupId, name, twitterHandle, description, user.getId());
+        groupDao.createGroup(group.getId(), name, twitterHandle, description, user.getId());
 
         //automatically join the group creator to the group
         groupDao.joinGroup(user.getId(), group.getId());
-
-        //update userGroups in session
-        List<Group> groups = (List<Group>) session.remove("userGroups");
-        groups.add(group);
-        session.put("userGroups", groups);
 
         groupDao.close();
         return SUCCESS;
@@ -82,6 +81,18 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
 
     public void setTwitterHandle(String twitterHandle) {
         this.twitterHandle = twitterHandle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGroupId() {
+        return groupId;
     }
 
     public void setSession(Map<String, Object> session) {

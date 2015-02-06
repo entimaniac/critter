@@ -13,8 +13,12 @@ import java.util.List;
  */
 @RegisterMapper(GroupMapper.class)
 public interface GroupDao {
-    @SqlUpdate("insert into Groupe (id, name, twitter_handle, owner) values (:id, :name, :twitterHandle, :owner)")
-    void createGroup(@Bind("id") String id, @Bind("name") String name, @Bind("twitterHandle") String twitterHandle, @Bind("owner") String owner);
+    @SqlUpdate("INSERT INTO Groupe (id, name, twitter_handle, description, owner) VALUES (:id, :name, :twitterHandle, :description, :owner)")
+    void createGroup(@Bind("id") String id,
+                     @Bind("name") String name,
+                     @Bind("twitterHandle") String twitterHandle,
+                     @Bind("description") String description,
+                     @Bind("owner") String owner);
 
     @SqlQuery("SELECT * FROM Groupe")
     List<Group> getAllGroups();
@@ -38,7 +42,7 @@ public interface GroupDao {
      * @param userId
      * @param groupId
      */
-    @SqlUpdate("insert into UserGroupe (user_id, group_id) values (:userId, :groupId)")
+    @SqlUpdate("INSERT INTO UserGroupe (user_id, group_id) VALUES (:userId, :groupId)")
     void joinGroup(@Bind("userId") String userId, @Bind("groupId") String groupId);
 
 

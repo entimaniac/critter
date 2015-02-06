@@ -7,12 +7,14 @@ public class Group {
     private String id;
     private String name;
     private String twitterHandle;
+    private String description;
     private String owner;
 
-    public Group(String id, String name, String twitterHandle, String owner) {
+    public Group(String id, String name, String twitterHandle, String description, String owner) {
         this.id = id;
         this.name = name;
         this.twitterHandle = twitterHandle;
+        this.description = description;
         this.owner = owner;
     }
 
@@ -41,6 +43,14 @@ public class Group {
 
     public void setTwitterHandle(String twitterHandle) {
         this.twitterHandle = twitterHandle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getOwner() {

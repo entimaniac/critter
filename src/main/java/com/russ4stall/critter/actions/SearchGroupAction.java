@@ -11,7 +11,6 @@ import java.util.List;
 /**
  * Created by russ on 1/28/15.
  */
-@LoginNotRequired
 public class SearchGroupAction extends ActionSupport {
     private String searchTerm;
     private List<Group> groups;

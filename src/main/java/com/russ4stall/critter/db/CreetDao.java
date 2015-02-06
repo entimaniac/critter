@@ -28,7 +28,7 @@ public interface CreetDao {
             "FROM Creet c \n" +
             "JOIN User u ON c.user_id = u.id\n" +
             "WHERE group_id = :groupId\n" +
-            ";")
+            "ORDER BY timestamp DESC;")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
     @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")

@@ -18,7 +18,7 @@ import java.util.UUID;
  * Created by russ on 1/30/15.
  */
 @Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
-public class CreateCreetAction extends ActionSupport implements SessionAware {
+public class PostCreetAction extends ActionSupport implements SessionAware {
     private String groupId;
     private String message;
     private Creet creet;

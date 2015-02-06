@@ -20,6 +20,7 @@ CREATE TABLE `Groupe` (
   `id` VARCHAR(36) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `twitter_handle` VARCHAR(45) NULL,
+  `description` VARCHAR(500) NULL,
   `owner` VARCHAR(36) NOT NULL,
   PRIMARY KEY (`id`));
 

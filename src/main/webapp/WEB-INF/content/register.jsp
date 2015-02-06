@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <app:common-head/>
+    <app:head-common/>
     <title>REGISTER</title>
    <%-- <style>
         body {

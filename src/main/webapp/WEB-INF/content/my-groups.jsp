@@ -6,17 +6,36 @@
 
 <html>
 <head>
-    <app:common-head/>
+    <app:head-common/>
     <title>CRITTER</title>
+    <style>
+        .group-list-display {
+            display: block;
+            border-bottom:1px solid lightgray;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .group-list-display:hover {
+            background-color: lightblue;
+
+        }
+    </style>
 </head>
 <body>
-<app:common-nav/>
+<app:nav-common/>
 <div>
-    <ul>
+    <a href="${pageContext.request.contextPath}/search-group">Join A Group</a>
+    <br/>
+    <a href="${pageContext.request.contextPath}/create-group">Create A Group</a>
+
+    <h3>My Groups</h3>
         <c:forEach var="group" items="${action.userGroups}">
-            <li><a href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">${group.name}</a></li>
+
+            <a class="group-list-display" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">${group.name}</a>
+
         </c:forEach>
-    </ul>
+
 
 </div>
 
