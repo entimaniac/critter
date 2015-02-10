@@ -18,5 +18,12 @@
     <div class="creet-message">
         ${creet.message}
     </div>
-
+</div>
+<div class="creet-details">
+    <div class="upvote-btn">
+        <img src="${pageContext.request.contextPath}/assets/img/up-arrow-32.png">
+    </div>
+    <div class="downvote-btn">
+        <img src="${pageContext.request.contextPath}/assets/img/down-arrow-32.png">
+    </div>
 </div>

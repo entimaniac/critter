@@ -31,7 +31,6 @@
                 </select>
                 <br/>
                 <button class=" btn btn-primary btn-block" type="submit">SUBMIT</button>
-                <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL</a>
 
             </form>
 </body>

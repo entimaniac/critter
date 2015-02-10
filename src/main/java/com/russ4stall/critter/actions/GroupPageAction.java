@@ -23,7 +23,6 @@ public class GroupPageAction extends ActionSupport {
         GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
         group = groupDao.getGroupById(groupId);
 
-        //todo: get all creets associated with group
         CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
         creets = creetDao.getCreetsByGroup(groupId);
 

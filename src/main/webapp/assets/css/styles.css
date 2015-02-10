@@ -110,6 +110,29 @@ nav ul li a:hover {
     color: white;
 }
 
+.group-list-display {
+    display: block;
+    border-bottom:1px solid lightgray;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #303030;
+}
+
+.group-list-display:first-child {
+    border-top:1px solid lightgray;
+}
+
+.touch-hover-group-list {
+    background-color: lightgray;
+    text-decoration: none;
+}
+
+.group-list-display:hover {
+    text-decoration: none;
+    color: #303030;
+}
+
 .title {
     margin-bottom: 40px;
     width: 140px;
@@ -125,7 +148,7 @@ nav ul li a:hover {
     background-color: white;
     border-radius: 2px;
     margin-bottom: 2px;
-    height: 68px;
+    height: 80px;
     width:100%;
     padding: 4px;
     float: left;

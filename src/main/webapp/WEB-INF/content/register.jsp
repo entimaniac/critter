@@ -44,12 +44,21 @@
             <span class="text-danger">${error.value}</span><br/>
         </c:forEach>
         <form role="form" action="${pageContext.request.contextPath}/register" method="post">
-            <input id="name-field" name="name" type="text" value="${action.name}" placeholder="NAME">
-            <input id="email-field" name="email" type="email" value="${action.email}" placeholder="EMAIL">
-            <input id="password-field" name="password" type="password" placeholder="PASSWORD">
-            <input id="confirm-password-field" name="confirmPassword" type="password" placeholder="RETYPE PASSWORD">
-            <button type="submit" class="">SUBMIT</button>
-            <a class="ui-btn ui-shadow ui-btn-corner-all" href="${pageContext.request.contextPath}/login">CANCEL</a>
+            <div class="form-group">
+                <input id="name-field" class="form-control"  name="name" type="text" value="${action.name}" placeholder="NAME">
+            </div>
+            <div class="form-group">
+                <input id="email-field" class="form-control" name="email" type="email" value="${action.email}" placeholder="EMAIL">
+            </div>
+            <div class="form-group">
+                <input id="password-field" class="form-control" name="password" type="password" placeholder="PASSWORD">
+            </div>
+            <div class="form-group">
+                <input id="confirm-password-field" class="form-control" name="confirmPassword" type="password" placeholder="RETYPE PASSWORD">
+            </div>
+
+            <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
+            <a class="btn btn-block btn-primary" href="${pageContext.request.contextPath}/login">CANCEL</a>
         </form>
     </div>
 </div>
