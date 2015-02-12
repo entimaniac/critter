@@ -31,6 +31,25 @@ public interface CreetDao {
             "ORDER BY timestamp DESC;")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
+
+
+    @SqlQuery("SELECT c.*,\n" +
+            "    (COALESCE((SELECT count(*) FROM Upvote\n" +
+            "    WHERE creet_id = c.id\n" +
+            "    GROUP BY c.id),0) -\n" +
+            "    COALESCE((SELECT count(*) FROM Downvote\n" +
+            "    WHERE creet_id = c.id\n" +
+            "    GROUP BY c.id),0)\n" +
+            "            ) as score, u.name, u.email, u.password\n" +
+            "    FROM Creet c\n" +
+            "    JOIN User u ON c.user_id = u.id\n" +
+            "    JOIN UserGroupe ug ON c.group_id = ug.group_id\n" +
+            "    WHERE ug.user_id = :userId\n" +
+            "    ORDER BY timestamp DESC;")
+    List<Creet> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
+
+
+
     @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")
     List<Creet> getCreetsByAuthor(@Bind("groupId") String userId);
 

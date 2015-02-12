@@ -2,16 +2,22 @@ function initCreet() {
 
     $(".creet").each(function () {
         var creet = $(this);
-        var creetId = creet.attr('id');
-        creet.on("swipeleft",function(){
-            alert("lefty loosey");
-        });
-        creet.on("swiperight",function(){
-            alert("righty tighty");
-        });
+        var creetId = creet.data('creetId');
+        var creetDetails = $('.creet-details[data-creet-id="'+ creetId + '"]');
 
+        /*creet.swipe( {
+            swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
+                $('.creet-details[data-creet-id="'+ creetId + '"]').slideToggle(400);
+            }
+        });*/
+
+        creet.click(function(){
+           // alert('test');
+           //$('.creet-details[data-creet-id="'+ creetId + '"]').slideToggle(400);
+           creetDetails.slideToggle(150);
+        });
         //Upvote functionality
-        creet.find('.upvote-btn').click(function() {
+        creetDetails.find('.upvote-btn').click(function() {
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/upvote",
@@ -26,7 +32,7 @@ function initCreet() {
         });
 
         //Downvote functionality
-        creet.find('.downvote-btn').click(function() {
+        creetDetails.find('.downvote-btn').click(function() {
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/downvote",

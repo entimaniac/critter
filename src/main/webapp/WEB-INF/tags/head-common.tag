@@ -13,6 +13,8 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.touchSwipe.min.js"></script>
+<script src="/assets/js/critter.js"></script>
 
 <link rel="stylesheet" href="/assets/css/styles.css">
 

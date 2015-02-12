@@ -10,12 +10,7 @@
     <title>CREATE A GROUP</title>
 </head>
 <body>
-    <app:nav-back/>
-
-
-    <h2>CREATE A GROUP</h2>
-
-
+    <app:nav-back title="Create a Group"/>
 
         <div class="center-block user-form">
             <c:forEach items="${action.fieldErrors}" var="error">
@@ -23,15 +18,17 @@
             </c:forEach>
 
             <form role="form" action="${pageContext.request.contextPath}/create-group" method="post">
-
-                <input id="name-field" name="name" type="text" value="${action.name}" placeholder="NAME">
-
-                <input id="twitter-handle-field" name="twitterHandle" type="text" value="${action.twitterHandle}" placeholder="TWITTER HANDLE">
-
-                <textarea id="description-field" name="description" placeholder="Write a brief description of your group.">${action.description}</textarea>
-
-                <button type="submit" class="btn btn-primary btn-block btn-lg">CREATE GROUP</button>
-                <a class="ui-btn ui-shadow ui-btn-corner-all" href="${pageContext.request.contextPath}/login">CANCEL</a>
+                <div class="form-group">
+                    <input class="form-control" id="name-field" name="name" type="text" value="${action.name}" placeholder="NAME">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="twitter-handle-field" name="twitterHandle" type="text" value="${action.twitterHandle}" placeholder="TWITTER HANDLE">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="description-field" name="description" placeholder="Write a brief description of your group.">${action.description}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">CREATE GROUP</button>
+                <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/login">CANCEL</a>
             </form>
         </div>
 

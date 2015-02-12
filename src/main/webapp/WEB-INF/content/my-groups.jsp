@@ -13,7 +13,7 @@
 <body>
 <app:nav-common/>
 <div>
-    <h1>My Groups</h1>
+
     <div class="group-list-container">
 
         <c:forEach var="group" items="${action.userGroups}">
