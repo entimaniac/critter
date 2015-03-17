@@ -1,5 +1,7 @@
 function initCreet() {
 
+    $("abbr.timeago").timeago();
+
     $(".creet").each(function () {
         var creet = $(this);
         var creetId = creet.data('creetId');

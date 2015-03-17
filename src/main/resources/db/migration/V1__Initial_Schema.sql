@@ -21,6 +21,7 @@ CREATE TABLE `Groupe` (
   `name` VARCHAR(45) NOT NULL,
   `twitter_handle` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
+  `threshold` INT,
   `owner` VARCHAR(36) NOT NULL,
   PRIMARY KEY (`id`));
 

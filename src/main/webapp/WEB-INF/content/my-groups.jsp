@@ -12,18 +12,24 @@
 </head>
 <body>
 <app:nav-common/>
-<div>
 
-    <div class="group-list-container">
+<h1>My Groups</h1>
+<div class="group-list-container">
+    <c:forEach var="group" items="${action.userGroups}">
+        <div class="group-list-display">
+            <a class="group-list-display-name" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">
+                ${group.name}
+                <c:if test="${group.owner == sessionScope.get('user').id}">
+                    <span class="group-list-display-owner">owner</span>
+                </c:if>
+            </a>
 
-        <c:forEach var="group" items="${action.userGroups}">
+        </div>
 
-            <a class="group-list-display" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">${group.name}</a>
+    </c:forEach>
 
-        </c:forEach>
-
-    </div>
 </div>
+
 
 
 

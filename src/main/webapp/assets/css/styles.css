@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px;
+    margin-top: 46px;
     overflow: hidden;
     background-color: #f0f0f0;
     max-width: 1000px;
@@ -113,10 +113,13 @@ nav ul li a:hover {
     color: white;
 }
 
-.group-list-display {
+.group-list-display-name {
     display: block;
     border-bottom:1px solid lightgray;
     padding: 20px;
+}
+
+.group-list-display-name{
     text-decoration: none;
     font-size: 18px;
     color: #303030;
@@ -131,9 +134,23 @@ nav ul li a:hover {
     text-decoration: none;
 }
 
-.group-list-display:hover {
+.group-list-display-name:hover {
     text-decoration: none;
     color: #303030;
+}
+
+.group-list-display-owner {
+    color: green;
+    float: right;
+}
+
+.edit-group-settings-button {
+    width: 120px;
+    border-radius: 2px;
+    padding: 4px;
+    border: 1px solid cornflowerblue;
+    font-size: 20px;
+    margin-left: 2px;
 }
 
 .title {
@@ -148,6 +165,7 @@ nav ul li a:hover {
 }
 
 .creet-container {
+    min-height: 80px;
     background-color: white;
     border-radius: 2px;
     margin-bottom: 2px;
@@ -158,12 +176,13 @@ nav ul li a:hover {
 
 .creet-container .score-container {
     float:left;
-    width:auto;
+    width:30px;
 
 }
 
 .creet-container .creet-score {
     text-align: center;
+    line-height: 80px;
     font-size: 20px;
 }
 
@@ -186,25 +205,29 @@ nav ul li a:hover {
     color: red;
 }
 
-.creet-container .creet-message {
-    float:left;
-
-}
-
 .creet-container .creet-header {
     /*float: left;*/
 }
 
 .creet-container .creet-author {
     width:auto;
-    float: left;
     color: gray;
 }
 
 .creet-container .creet-timestamp {
     float:right;
+    color: gray;
 }
 
+.creet-container .creet-message {
+    float:left;
+
+}
+
+abbr[title] {
+    cursor: text;
+    border-bottom: none;
+}
 
 #main-wrapper {
     height: 100%;

@@ -7,12 +7,14 @@
         <div class="creet-score">${creet.score}</div>
 
     </div>
-    <div class="creet-header">
-        <div class="creet-timestamp">${creet.timestamp}</div>
-        <div class="creet-author">${creet.author.name}</div>
-    </div>
-    <div class="creet-message">
-        ${creet.message}
+    <div>
+        <div class="creet-header">
+            <div class="creet-timestamp"><abbr class="timeago" title="${creet.timestamp}"></abbr></div>
+            <div class="creet-author">${creet.author.name}</div>
+        </div>
+        <div class="creet-message">
+            ${creet.message}
+        </div>
     </div>
 </div>
 

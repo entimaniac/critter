@@ -19,6 +19,11 @@
 <app:nav-common/>
 
 <h1>${action.group.name}</h1>
+<div class="edit-group-settings-button">
+    <a href="${pageContext.request.contextPath}/group-settings?groupId=${group.id}">
+        <img src="${pageContext.request.contextPath}/assets/img/settings-32.png"><span>Settings</span>
+    </a>
+</div>
 <h3>${action.group.twitterHandle}</h3>
 <p>
     ${action.group.description}

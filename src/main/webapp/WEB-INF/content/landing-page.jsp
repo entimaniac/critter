@@ -16,11 +16,9 @@
 </head>
 <body>
 <app:nav-common/>
-<div>
     <c:forEach var="creet" items="${action.creets}">
         <app:creet creet="${creet}"/>
     </c:forEach>
-</div>
 
 
 

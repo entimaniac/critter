@@ -8,6 +8,7 @@ public class Group {
     private String name;
     private String twitterHandle;
     private String description;
+    private int threshold;
     private String owner;
 
     public Group(String id, String name, String twitterHandle, String description, String owner) {
@@ -51,6 +52,14 @@ public class Group {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 
     public String getOwner() {

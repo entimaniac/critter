@@ -5,26 +5,20 @@ import com.russ4stall.critter.core.Group;
 import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupDao;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.SessionAware;
 
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
+import static org.apache.commons.lang3.StringUtils.isAllLowerCase;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
 /**
- * Created by russ on 1/27/15.
+ * Created by russellf on 3/17/2015.
  */
-@Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
-public class CreateGroupAction extends ActionSupport implements SessionAware {
+public class GroupSettingsAction extends ActionSupport {
     private String name;
     private String twitterHandle;
     private String description;
     private int threshold;
-
     private String groupId;
 
     private Map<String, Object> session;
@@ -33,7 +27,6 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
     public String input() throws Exception {
         return INPUT;
     }
-
 
     @Override
     public void validate() {
@@ -60,13 +53,15 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
     public String execute() throws Exception {
         GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
 
+        Group group = groupDao.getGroupById(groupId);
         User user = (User) session.get("user");
-        groupId = UUID.randomUUID().toString();
-        Group group = new Group(groupId, name, twitterHandle, description, user.getId());
-        groupDao.createGroup(group.getId(), name, twitterHandle, description, threshold, user.getId());
+        //verify user has permission to update group
+        if(!user.getId().equals(group.getOwner())) {
+            return "error";
+        }
 
-        //automatically join the group creator to the group
-        groupDao.joinGroup(user.getId(), group.getId());
+        groupDao.updateGroup(groupId, name, twitterHandle, description, threshold);
+
 
         groupDao.close();
         return SUCCESS;
@@ -107,6 +102,10 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
 
     public String getGroupId() {
         return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public void setSession(Map<String, Object> session) {
