@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,7 +19,7 @@
 
 <h1>${action.group.name}</h1>
 <div class="edit-group-settings-button">
-    <a href="${pageContext.request.contextPath}/group-settings?groupId=${group.id}">
+    <a href="${pageContext.request.contextPath}/create-group?groupId=${group.id}&isEdit=True">
         <img src="${pageContext.request.contextPath}/assets/img/settings-32.png"><span>Settings</span>
     </a>
 </div>

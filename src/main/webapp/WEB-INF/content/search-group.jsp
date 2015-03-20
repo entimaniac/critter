@@ -14,8 +14,6 @@
 
 <div class="container">
 
-            <h2>SEARCH FOR A GROUP</h2>
-
     <div class="center-block user-form">
 
         <form role="form" action="${pageContext.request.contextPath}/search-group" method="post">

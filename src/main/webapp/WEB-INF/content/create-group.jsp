@@ -10,7 +10,16 @@
     <title>CREATE A GROUP</title>
 </head>
 <body>
-    <app:nav-back title="Create a Group"/>
+<c:choose>
+    <c:when test="${isEdit}">
+        <app:nav-back title="Group Settings"/>
+    </c:when>
+    <c:otherwise>
+        <app:nav-back title="Create a Group"/>
+    </c:otherwise>
+</c:choose>
+
+
 
         <div class="center-block user-form">
             <c:forEach items="${action.fieldErrors}" var="error">
@@ -23,6 +32,10 @@
                 </div>
                 <div class="form-group">
                     <input class="form-control" id="twitter-handle-field" name="twitterHandle" type="text" value="${action.twitterHandle}" placeholder="TWITTER HANDLE">
+                </div>
+                <div class="form-group">
+                    <label for="threshold-field">This is the score a creet must achieve before it gets published to Twitter.</label>
+                    <input class="form-control" id="threshold-field" name="threshold" type="number" min="0" value="${action.threshold}" placeholder="0">
                 </div>
                 <div class="form-group">
                     <textarea class="form-control" id="description-field" name="description" placeholder="Write a brief description of your group.">${action.description}</textarea>
