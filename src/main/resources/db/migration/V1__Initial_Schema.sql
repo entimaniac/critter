@@ -27,7 +27,8 @@ CREATE TABLE `Groupe` (
 
 CREATE TABLE `UserGroupe` (
   `user_id` VARCHAR(36) NOT NULL,
-  `group_id` VARCHAR(36) NOT NULL);
+  `group_id` VARCHAR(36) NOT NULL,
+  UNIQUE INDEX `index_UNIQUE` (`user_id`, `group_id` ASC));
 
 CREATE TABLE `Upvote` (
   `creet_id` VARCHAR(36) NOT NULL,
