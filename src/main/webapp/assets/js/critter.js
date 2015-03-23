@@ -7,11 +7,6 @@ function initCreet() {
         var creetId = creet.data('creetId');
         var creetDetails = $('.creet-details[data-creet-id="'+ creetId + '"]');
 
-        /*creet.swipe( {
-            swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
-                $('.creet-details[data-creet-id="'+ creetId + '"]').slideToggle(400);
-            }
-        });*/
 
         creet.click(function(){
            // alert('test');

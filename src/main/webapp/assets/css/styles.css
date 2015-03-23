@@ -165,7 +165,7 @@ nav ul li a:hover {
 }
 
 .creet-container {
-    min-height: 80px;
+    min-height: 100px;
     background-color: white;
     border-radius: 2px;
     margin-bottom: 2px;
@@ -176,8 +176,8 @@ nav ul li a:hover {
 
 .creet-container .score-container {
     float:left;
-    width:30px;
-
+    width:40px;
+    margin-right: 10px  ;
 }
 
 .creet-container .creet-score {
@@ -199,10 +199,12 @@ nav ul li a:hover {
 
 .upvote-btn {
     color: green;
+    padding-left: 4px;
 }
 
 .downvote-btn {
     color: red;
+    padding-left: 4px;
 }
 
 .creet-container .creet-header {

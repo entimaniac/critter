@@ -2,10 +2,14 @@
 
 
 <div class="creet creet-container" data-creet-id="${creet.id}">
-    <div class="score-container">
-
+    <div class="score-container" data-creet-id="${creet.id}">
+        <div class="upvote-btn">
+            <img src="${pageContext.request.contextPath}/assets/img/up-arrow-32.png">
+        </div>
         <div class="creet-score">${creet.score}</div>
-
+        <div class="downvote-btn">
+            <img src="${pageContext.request.contextPath}/assets/img/down-arrow-32.png">
+        </div>
     </div>
     <div>
         <div class="creet-header">
