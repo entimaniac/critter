@@ -9,7 +9,7 @@ function initCreet() {
 
         //Upvote functionality
         creet.find('.upvote-btn').click(function() {
-            if (!creet.data('upvoted')) {
+            if (creet.data('vote-status') != 'upvoted') {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/upvote",
@@ -20,7 +20,10 @@ function initCreet() {
                         var score = +(creet.find('.creet-score').text());
                         score++;
                         creet.find('.creet-score').text(score);
-                        creet.data('upvoted', true)
+                        creet.data('vote-status', 'upvoted');
+                        creet.find('.upvote-btn').addClass('button-upvoted');
+                        creet.find('.downvote-btn').removeClass('button-downvoted');
+
                     });
             } else {
                 alert("You've already upvoted this creet!");
@@ -29,7 +32,7 @@ function initCreet() {
 
         //Downvote functionality
         creet.find('.downvote-btn').click(function() {
-            if (!creet.data('downvoted')) {
+            if (creet.data('vote-status') != 'downvoted') {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/downvote",
@@ -40,7 +43,9 @@ function initCreet() {
                         var score = +(creet.find('.creet-score').text());
                         score--;
                         creet.find('.creet-score').text(score);
-                        creet.data('downvoted', true)
+                        creet.data('vote-status', 'downvoted');
+                        creet.find('.downvote-btn').addClass('button-downvoted');
+                        creet.find('.upvote-btn').removeClass('button-upvoted');
                     });
             } else {
                 alert("You've already downvoted this creet!");

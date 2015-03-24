@@ -198,13 +198,21 @@ nav ul li a:hover {
 }
 
 .upvote-btn {
-    color: green;
     padding-left: 4px;
 }
 
 .downvote-btn {
-    color: red;
     padding-left: 4px;
+}
+
+.button-upvoted {
+    background-color: green;
+    border-radius: 2px;
+}
+
+.button-downvoted {
+    background-color: red;
+    border-radius: 2px;
 }
 
 .creet-container .creet-header {
