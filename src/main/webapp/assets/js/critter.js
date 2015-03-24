@@ -1,3 +1,6 @@
+var UPVOTED_STATUS = "UPVOTED"
+var DOWNVOTED_STATUS = "DOWNVOTED"
+
 function initCreet() {
 
     $("abbr.timeago").timeago();
@@ -7,15 +10,15 @@ function initCreet() {
         var creet = $(this);
         var creetId = creet.data('creetId');
 
-        if (creet.data('vote-status') == 'UPVOTED') {
+        if (creet.data('vote-status') == UPVOTED_STATUS) {
             creet.find('.upvote-btn').addClass('button-upvoted');
-        } else if (creet.data('vote-status') == 'DOWNVOTED') {
+        } else if (creet.data('vote-status') == DOWNVOTED_STATUS) {
             creet.find('.downvote-btn').addClass('button-downvoted');
         }
 
         //Upvote functionality
         creet.find('.upvote-btn').click(function() {
-            if (creet.data('vote-status') != 'UPVOTED') {
+            if (creet.data('vote-status') != UPVOTED_STATUS) {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/upvote",
@@ -26,7 +29,7 @@ function initCreet() {
                         var score = +(creet.find('.creet-score').text());
                         score++;
                         creet.find('.creet-score').text(score);
-                        creet.data('vote-status', 'upvoted');
+                        creet.data('vote-status', UPVOTED_STATUS);
                         creet.find('.upvote-btn').addClass('button-upvoted');
                         creet.find('.downvote-btn').removeClass('button-downvoted');
 
@@ -38,7 +41,7 @@ function initCreet() {
 
         //Downvote functionality
         creet.find('.downvote-btn').click(function() {
-            if (creet.data('vote-status') != 'DOWNVOTED') {
+            if (creet.data('vote-status') != DOWNVOTED_STATUS) {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/downvote",
@@ -49,7 +52,7 @@ function initCreet() {
                         var score = +(creet.find('.creet-score').text());
                         score--;
                         creet.find('.creet-score').text(score);
-                        creet.data('vote-status', 'downvoted');
+                        creet.data('vote-status', DOWNVOTED_STATUS);
                         creet.find('.downvote-btn').addClass('button-downvoted');
                         creet.find('.upvote-btn').removeClass('button-upvoted');
                     });
