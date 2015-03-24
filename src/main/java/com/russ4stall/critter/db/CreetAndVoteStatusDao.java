@@ -46,4 +46,6 @@ public interface CreetAndVoteStatusDao {
             "    WHERE ug.user_id = :userId\n" +
             "    ORDER BY timestamp DESC;")
     List<CreetAndVoteStatus> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
+
+    void close();
 }

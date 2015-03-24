@@ -29,7 +29,7 @@
 </p>
 
 <c:forEach var="creet" items="${action.creets}">
-    <app:creet creet="${creet}"/>
+    <app:creet creet="${creet.creet}" voteStatus="${creet.voteStatus}"/>
 
 </c:forEach>
 
