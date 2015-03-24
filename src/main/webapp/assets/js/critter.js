@@ -7,9 +7,15 @@ function initCreet() {
         var creet = $(this);
         var creetId = creet.data('creetId');
 
+        if (creet.data('vote-status') == 'UPVOTED') {
+            creet.find('.upvote-btn').addClass('button-upvoted');
+        } else if (creet.data('vote-status') == 'DOWNVOTED') {
+            creet.find('.downvote-btn').addClass('button-downvoted');
+        }
+
         //Upvote functionality
         creet.find('.upvote-btn').click(function() {
-            if (creet.data('vote-status') != 'upvoted') {
+            if (creet.data('vote-status') != 'UPVOTED') {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/upvote",
@@ -32,7 +38,7 @@ function initCreet() {
 
         //Downvote functionality
         creet.find('.downvote-btn').click(function() {
-            if (creet.data('vote-status') != 'downvoted') {
+            if (creet.data('vote-status') != 'DOWNVOTED') {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/downvote",

@@ -1,7 +1,7 @@
 <%@ attribute name="creet" required="true" type="com.russ4stall.critter.core.Creet" %>
+<%@ attribute name="voteStatus" required="false" type="com.russ4stall.critter.core.VoteStatus" %>
 
-
-<div class="creet creet-container" data-creet-id="${creet.id}">
+<div class="creet creet-container" data-creet-id="${creet.id}" data-vote-status="${voteStatus}">
     <div class="score-container" data-creet-id="${creet.id}">
         <div class="upvote-btn">
             <img src="${pageContext.request.contextPath}/assets/img/up-arrow-32.png">

@@ -2,7 +2,9 @@ package com.russ4stall.critter.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.russ4stall.critter.core.Creet;
+import com.russ4stall.critter.core.CreetAndVoteStatus;
 import com.russ4stall.critter.core.User;
+import com.russ4stall.critter.db.CreetAndVoteStatusDao;
 import com.russ4stall.critter.db.CreetDao;
 import com.russ4stall.critter.db.DbiFactory;
 import org.apache.struts2.interceptor.SessionAware;
@@ -18,21 +20,20 @@ import java.util.Map;
  */
 
 public class LandingPageAction extends ActionSupport implements SessionAware {
-    private List<Creet> creets;
+    private List<CreetAndVoteStatus> creets;
 
     Map<String, Object> session;
 
     public String input() {
-        CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
-
         User user = (User) session.get("user");
 
-        creets = creetDao.getCreetsForAllGroupsByUser(user.getId());
+        CreetAndVoteStatusDao creetAndVoteStatusDao = new DbiFactory().getDbi().open(CreetAndVoteStatusDao.class);
+        creets = creetAndVoteStatusDao.getCreetsForAllGroupsByUser(user.getId());
 
         return INPUT;
     }
 
-    public List<Creet> getCreets() {
+    public List<CreetAndVoteStatus> getCreets() {
         return creets;
     }
 
