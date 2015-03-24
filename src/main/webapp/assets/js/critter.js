@@ -5,16 +5,9 @@ function initCreet() {
     $(".creet").each(function () {
         var creet = $(this);
         var creetId = creet.data('creetId');
-        var creetDetails = $('.creet-details[data-creet-id="'+ creetId + '"]');
 
-
-        creet.click(function(){
-           // alert('test');
-           //$('.creet-details[data-creet-id="'+ creetId + '"]').slideToggle(400);
-           creetDetails.slideToggle(150);
-        });
         //Upvote functionality
-        creetDetails.find('.upvote-btn').click(function() {
+        creet.find('.upvote-btn').click(function() {
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/upvote",
@@ -29,7 +22,7 @@ function initCreet() {
         });
 
         //Downvote functionality
-        creetDetails.find('.downvote-btn').click(function() {
+        creet.find('.downvote-btn').click(function() {
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/downvote",

@@ -21,12 +21,3 @@
         </div>
     </div>
 </div>
-
-<div class="creet-details" data-creet-id="${creet.id}" style="display: none">
-    <div class="upvote-btn">
-        <img src="${pageContext.request.contextPath}/assets/img/up-arrow-64.png">
-    </div>
-    <div class="downvote-btn">
-        <img src="${pageContext.request.contextPath}/assets/img/down-arrow-64.png">
-    </div>
-</div>

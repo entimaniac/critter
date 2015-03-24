@@ -34,11 +34,11 @@ CREATE TABLE `Upvote` (
   `creet_id` VARCHAR(36) NOT NULL,
   `user_id` VARCHAR(36) NOT NULL,
   `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`));
+  UNIQUE INDEX `index_UNIQUE` (`user_id`, `creet_id` ASC));
 
 CREATE TABLE `Downvote` (
   `creet_id` VARCHAR(36) NOT NULL,
   `user_id` VARCHAR(36) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`));
+  UNIQUE INDEX `index_UNIQUE` (`user_id`, `creet_id` ASC));
 
