@@ -56,8 +56,14 @@ public interface CreetDao {
     @SqlUpdate("INSERT INTO Upvote (creet_id, user_id) values (:creetId, :userId)")
     void upvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
 
+    @SqlUpdate("DELETE FROM Upvote WHERE creet_id = :creetId AND user_id = :userId")
+    void removeUpvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
+
     @SqlUpdate("INSERT INTO Downvote (creet_id, user_id) values (:creetId, :userId)")
     void downvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
+
+    @SqlUpdate("DELETE FROM Downvote WHERE creet_id = :creetId AND user_id = :userId")
+    void removeDownvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
 
     void close();
 }

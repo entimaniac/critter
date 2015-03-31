@@ -22,7 +22,7 @@ function initCreet() {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/upvote",
-                    data: {creetId: creetId}
+                    data: { creetId: creetId, voteStatus: creet.data('vote-status') }
                 })
                     .done(function (msg) {
                         //todo: add upvote animation
@@ -45,7 +45,7 @@ function initCreet() {
                 $.ajax({
                     type: "POST",
                     url: "${pageContext.request.contextPath}/downvote",
-                    data: { creetId: creetId}
+                    data: { creetId: creetId, voteStatus: creet.data('vote-status') }
                 })
                     .done(function( msg ) {
                         //todo: add downvote animation
