@@ -31,15 +31,15 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
         UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
 
         groupMember = userDao.isUserGroupMember(user.getId(), groupId);
-
         userDao.close();
+
+        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
+        group = groupDao.getGroupById(groupId);
+
         //if user isn't in group -> return
         if (!groupMember) {
             return INPUT;
         }
-
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-        group = groupDao.getGroupById(groupId);
 
         CreetAndVoteStatusDao creetAndVoteStatusDao = new DbiFactory().getDbi().open(CreetAndVoteStatusDao.class);
         creets = creetAndVoteStatusDao.getCreetsByGroup(groupId, user.getId());
