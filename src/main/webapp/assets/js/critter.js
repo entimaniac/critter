@@ -27,6 +27,9 @@ function initCreet() {
                     .done(function (msg) {
                         //todo: add upvote animation
                         var score = +(creet.find('.creet-score').text());
+                        if (creet.data('vote-status') == DOWNVOTED_STATUS) {
+                            score++;
+                        }
                         score++;
                         creet.find('.creet-score').text(score);
                         creet.data('vote-status', UPVOTED_STATUS);
@@ -50,6 +53,9 @@ function initCreet() {
                     .done(function( msg ) {
                         //todo: add downvote animation
                         var score = +(creet.find('.creet-score').text());
+                        if (creet.data('vote-status') == UPVOTED_STATUS) {
+                            score--;
+                        }
                         score--;
                         creet.find('.creet-score').text(score);
                         creet.data('vote-status', DOWNVOTED_STATUS);
