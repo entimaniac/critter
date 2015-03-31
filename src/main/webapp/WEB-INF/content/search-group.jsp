@@ -27,7 +27,7 @@
     <div id="groups-list">
         <c:forEach var="group" items="${action.groups}">
             <div class="group-description">
-                <a href="/join-group?groupId=${group.id}">${group.name}</a>
+                <a href="/group-page?groupId=${group.id}">${group.name}</a>
             </div>
         </c:forEach>
 

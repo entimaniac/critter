@@ -28,10 +28,21 @@
     ${action.group.description}
 </p>
 
-<c:forEach var="creet" items="${action.creets}">
-    <app:creet creet="${creet.creet}" voteStatus="${creet.voteStatus}"/>
 
-</c:forEach>
+<c:choose>
+    <c:when test="${action.groupMember}">
+        <c:forEach var="creet" items="${action.creets}">
+            <app:creet creet="${creet.creet}" voteStatus="${creet.voteStatus}"/>
+        </c:forEach>
+    </c:when>
+
+    <c:otherwise>
+        <a href="/join-group?groupId=${group.id}">${group.name}</a>
+    </c:otherwise>
+</c:choose>
+
+
+
 
 
 
