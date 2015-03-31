@@ -34,7 +34,7 @@
 <div class="menu" style="display:none">
     <ul>
         <li>
-            <a href="${pageContext.request.contextPath}/search-group">Join A Group</a>
+            <a href="${pageContext.request.contextPath}/search-group">Search For A Group</a>
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/create-group">Create A Group</a>

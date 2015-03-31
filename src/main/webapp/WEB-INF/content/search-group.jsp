@@ -12,7 +12,6 @@
 <body>
 <app:nav-back title="GROUP SEARCH"/>
 
-<div class="container">
 
     <div class="center-block user-form">
 
@@ -26,15 +25,18 @@
     </div>
     <div id="groups-list">
         <c:forEach var="group" items="${action.groups}">
-            <div class="group-description">
-                <a href="/join-group?groupId=${group.id}">${group.name}</a>
+            <div class="group-list-display">
+                <a class="group-list-display-name" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">
+                        ${group.name}
+                    <c:if test="${group.owner == sessionScope.get('user').id}">
+                        <span class="group-list-display-owner">owner</span>
+                    </c:if>
+                </a>
             </div>
         </c:forEach>
 
 
     </div>
-
-</div>
 </body>
 
 
