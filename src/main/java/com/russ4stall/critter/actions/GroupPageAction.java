@@ -7,6 +7,7 @@ import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.db.CreetAndVoteStatusDao;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupDao;
+import com.russ4stall.critter.db.UserDao;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.List;
@@ -20,16 +21,25 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
     private String groupId;
     private Group group;
     private List<CreetAndVoteStatus> creets;
+    private boolean groupMember;
 
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
+        User user = (User) session.get("user");
+        UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
+
+        groupMember = userDao.isUserGroupMember(user.getId(), groupId);
+        userDao.close();
+
         GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
         group = groupDao.getGroupById(groupId);
 
-        User user = (User) session.get("user");
-
+        //if user isn't in group -> return
+        if (!groupMember) {
+            return INPUT;
+        }
 
         CreetAndVoteStatusDao creetAndVoteStatusDao = new DbiFactory().getDbi().open(CreetAndVoteStatusDao.class);
         creets = creetAndVoteStatusDao.getCreetsByGroup(groupId, user.getId());
@@ -59,6 +69,10 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
 
     public List<CreetAndVoteStatus> getCreets() {
         return creets;
+    }
+
+    public boolean isGroupMember() {
+        return groupMember;
     }
 
     public void setSession(Map<String, Object> session) {

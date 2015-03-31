@@ -32,9 +32,7 @@
                         <span class="group-list-display-owner">owner</span>
                     </c:if>
                 </a>
-            </div>
         </c:forEach>
-
 
     </div>
 </body>
