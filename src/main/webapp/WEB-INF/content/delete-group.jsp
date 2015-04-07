@@ -18,7 +18,7 @@
     </c:forEach>
 
     <form role="form" action="${pageContext.request.contextPath}/delete-group" method="post">
-        <h2>Are you sure?</h2>
+        <h2 class="">Are you sure?</h2>
         <input type="hidden" name="groupId" value="${action.groupId}">
         <button type="submit" class="btn btn-primary btn-block">DELETE GROUP</button>
         <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/login">CANCEL</a>
