@@ -18,14 +18,25 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by russ on 1/27/15.
  */
+@Result(location = "/my-groups", type = "redirect")
 public class DeleteGroupAction extends ActionSupport implements SessionAware {
     private String groupId;
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
+        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
+        User user = (User) session.get("user");
 
-        return SUCCESS;
+        try {
+            if (!groupDao.getGroupById(groupId).getOwner().equals(user.getId())) {
+                addFieldError("password", "You don't own this group!");
+                return "error";
+            }
+        }catch(Exception e) {
+
+        }
+        return INPUT;
     }
 
 
@@ -42,8 +53,6 @@ public class DeleteGroupAction extends ActionSupport implements SessionAware {
         }catch(Exception e) {
 
         }
-
-
         groupDao.deleteGroup(groupId);
         groupDao.deleteUserGroup(groupId);
 

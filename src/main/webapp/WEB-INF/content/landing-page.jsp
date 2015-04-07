@@ -19,8 +19,8 @@
 <c:choose>
     <c:when test="${action.creets.size() > 0}">
         <c:forEach var="creet" items="${action.creets}">
-            <app:creet creet="${creet.creet}" voteStatus="${creet.voteStatus}"/>
-        </c:forEach>
+            <app:creet creet="${creet.creet} voteStatus="${creet.voteStatus}"/>
+        </c:forEach>"
     </c:when>
     <c:otherwise>
         <p>Either you are not a part of any groups, or nobody in your groups have posted any Creets.</p>
