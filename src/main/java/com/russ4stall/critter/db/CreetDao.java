@@ -65,5 +65,8 @@ public interface CreetDao {
     @SqlUpdate("DELETE FROM Downvote WHERE creet_id = :creetId AND user_id = :userId")
     void removeDownvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
 
+    @SqlUpdate("DELETE FROM Creet WHERE group_id = :group_id")
+    void deleteCreetByGroupId(@Bind("group_id") String group_id);
+
     void close();
 }

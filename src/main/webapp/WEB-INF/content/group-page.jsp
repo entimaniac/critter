@@ -24,6 +24,11 @@
             <img src="${pageContext.request.contextPath}/assets/img/settings-32.png"><span>Settings</span>
         </a>
     </div>
+    <div class=""edit-group-settings-button">
+        <a href="${pageContext.request.contextPath}/delete-group?groupId=${action.group.id}">
+            <img src="${pageContext.request.contextPath}/assets/img/trash-delete-32.png"><span>Delete Group</span>
+        </a>
+    </div>
 </c:if>
 
 

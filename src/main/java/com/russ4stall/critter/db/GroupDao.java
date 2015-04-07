@@ -57,6 +57,11 @@ public interface GroupDao {
     @SqlQuery("SELECT * FROM Groupe WHERE name LIKE :searchTerm")
     List<Group> searchForGroupsByName(@Bind("searchTerm") String searchTerm);
 
+    @SqlUpdate("DELETE FROM Groupe WHERE id = :id")
+    void deleteGroup(@Bind("id") String id);
+
+    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :group_id")
+    void deleteUserGroup( @Bind("group_id") String group_id);
 
 
 
