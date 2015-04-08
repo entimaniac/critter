@@ -12,7 +12,6 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by russ on 1/29/15.
@@ -22,37 +21,30 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
     private Group group;
     private List<CreetAndVoteStatus> creets;
     private boolean groupMember;
-
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
         User user = (User) session.get("user");
-        UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
 
-        groupMember = userDao.isUserGroupMember(user.getId(), groupId);
-        userDao.close();
+        try (UserDao userDao = new DbiFactory().getDbi().open(UserDao.class)) {
+            groupMember = userDao.isUserGroupMember(user.getId(), groupId);
+        }
 
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-        group = groupDao.getGroupById(groupId);
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            group = groupDao.getGroupById(groupId);
+        }
 
         //if user isn't in group -> return
         if (!groupMember) {
             return INPUT;
         }
 
-        CreetAndVoteStatusDao creetAndVoteStatusDao = new DbiFactory().getDbi().open(CreetAndVoteStatusDao.class);
-        creets = creetAndVoteStatusDao.getCreetsByGroup(groupId, user.getId());
+        try (CreetAndVoteStatusDao creetAndVoteStatusDao = new DbiFactory().getDbi().open(CreetAndVoteStatusDao.class)) {
+            creets = creetAndVoteStatusDao.getCreetsByGroup(groupId, user.getId());
+        }
 
-        creetAndVoteStatusDao.close();
-        groupDao.close();
         return INPUT;
-    }
-
-
-    public static void main(String[] args) {
-        String id = UUID.randomUUID().toString();
-        System.out.println(id);
     }
 
     public String getGroupId() {

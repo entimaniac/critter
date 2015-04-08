@@ -14,7 +14,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
  * @author Russ Forstall
  */
 @RegisterMapper(UserMapper.class)
-public interface UserDao {
+public interface UserDao extends AutoCloseable {
     @SqlUpdate("insert into User (id, name, email, password) values (:id, :name, :email, :password);")
     void createUser(@Bind("id") String id, @Bind("name") String name, @Bind("email") String email, @Bind("password") String password);
 
@@ -23,6 +23,4 @@ public interface UserDao {
 
     @SqlQuery("SELECT count(*) FROM UserGroupe WHERE user_id = :userId AND group_id = :groupId;")
     boolean isUserGroupMember(@Bind("userId") String userId, @Bind("groupId") String groupId);
-
-    void close();
 }

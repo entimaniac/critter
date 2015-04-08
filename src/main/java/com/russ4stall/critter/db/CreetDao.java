@@ -12,7 +12,7 @@ import java.util.List;
  * Created by russ on 1/30/15.
  */
 @RegisterMapper(CreetMapper.class)
-public interface CreetDao {
+public interface CreetDao extends AutoCloseable {
 
     @SqlUpdate("insert into Creet (id, message, group_id, user_id) values (:id, :message, :groupId, :userId)")
     void createCreet(@Bind("id") String id, @Bind("message") String message, @Bind("groupId") String groupId, @Bind("userId") String userId);
@@ -68,5 +68,4 @@ public interface CreetDao {
     @SqlUpdate("DELETE FROM Creet WHERE group_id = :group_id")
     void deleteCreetByGroupId(@Bind("group_id") String group_id);
 
-    void close();
 }

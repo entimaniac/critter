@@ -23,23 +23,21 @@ public class PostCreetAction extends ActionSupport implements SessionAware {
     private String message;
     private Creet creet;
     private List<Group> userGroups;
-
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
         User user = (User) session.get("user");
-        userGroups = groupDao.getUserGroups(user.getId());
+
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            userGroups = groupDao.getUserGroups(user.getId());
+        }
 
         return INPUT;
     }
 
-
     @Override
     public String execute() throws Exception {
-        CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
-
         User user = (User) session.get("user");
 
         creet = new Creet();
@@ -48,7 +46,9 @@ public class PostCreetAction extends ActionSupport implements SessionAware {
         creet.setMessage(message);
         creet.setAuthor(user);
 
-        creetDao.createCreet(creet.getId(), message, groupId, user.getId());
+        try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
+            creetDao.createCreet(creet.getId(), message, groupId, user.getId());
+        }
 
         return SUCCESS;
     }

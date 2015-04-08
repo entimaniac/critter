@@ -23,7 +23,6 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @Result(location = "/landing-page", type = "redirect")
 public class RegisterAction extends ActionSupport implements SessionAware {
     private static final int MINIMUM_PASSWORD_LENGTH = 6;
-
     private String name;
     private String email;
     private String password;
@@ -40,7 +39,7 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-        UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
+
         String hashPass = BCrypt.hashpw(password, BCrypt.gensalt());
         User user = new User(
                 UUID.randomUUID().toString(),
@@ -48,10 +47,13 @@ public class RegisterAction extends ActionSupport implements SessionAware {
                 email,
                 hashPass
         );
-        userDao.createUser(user.getId(), name, email, hashPass);
+
+        try (UserDao userDao = new DbiFactory().getDbi().open(UserDao.class)) {
+            userDao.createUser(user.getId(), name, email, hashPass);
+        }
+
         session.put("user", user);
 
-        userDao.close();
         return SUCCESS;
     }
 

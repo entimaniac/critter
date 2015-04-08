@@ -8,12 +8,10 @@ import com.russ4stall.critter.db.GroupDao;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
 /**
  * Created by russ on 1/27/15.
@@ -26,7 +24,6 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
     private int threshold;
     private boolean isEdit;
     private String groupId;
-
     private Map<String, Object> session;
 
     @Override
@@ -55,45 +52,43 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
             return;
         }
 
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-
-        if (groupDao.getGroupByName(name) != null) {
-            addFieldError("name", "Already exists poser!");
-            return;
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            if (groupDao.getGroupByName(name) != null) {
+                addFieldError("name", "Already exists poser!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        groupDao.close();
     }
 
     @Override
     public String execute() throws Exception {
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-
         User user = (User) session.get("user");
         groupId = UUID.randomUUID().toString();
 
         Group group;
 
-        if (isEdit) {
-            group = groupDao.getGroupById(groupId);
-            //verify user has permission to update group
-            if(!user.getId().equals(group.getOwner())) {
-                return "error";
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            if (isEdit) {
+                group = groupDao.getGroupById(groupId);
+                //verify user has permission to update group
+                if(!user.getId().equals(group.getOwner())) {
+                    return "error";
+                }
+
+                groupDao.updateGroup(groupId, name, twitterHandle, description, threshold);
+
+            } else {
+                group = new Group(groupId, name, twitterHandle, description, user.getId());
+                groupDao.createGroup(group.getId(), name, twitterHandle, description, threshold, user.getId());
+
+                //automatically join the group creator to the group
+                groupDao.joinGroup(user.getId(), group.getId());
             }
-
-            groupDao.updateGroup(groupId, name, twitterHandle, description, threshold);
-
-        } else {
-            group = new Group(groupId, name, twitterHandle, description, user.getId());
-            groupDao.createGroup(group.getId(), name, twitterHandle, description, threshold, user.getId());
-
-            //automatically join the group creator to the group
-            groupDao.joinGroup(user.getId(), group.getId());
         }
 
-
-        groupDao.close();
         return SUCCESS;
-
     }
 
     public String getName() {

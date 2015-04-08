@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.russ4stall.critter.core.Group;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupDao;
-import com.russ4stall.critter.utils.LoginNotRequired;
 
 import java.util.List;
 
@@ -17,18 +16,15 @@ public class SearchGroupAction extends ActionSupport {
 
     @Override
     public String input() throws Exception {
-
-
         return INPUT;
     }
 
     @Override
     public String execute() throws Exception {
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-
-        //adding %'s because jdbi doesn't allow it in the definition
-        groups = groupDao.searchForGroupsByName("%" + searchTerm + "%");
-
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            //adding %'s because jdbi doesn't allow it in the definition
+            groups = groupDao.searchForGroupsByName("%" + searchTerm + "%");
+        }
 
         return SUCCESS;
     }
