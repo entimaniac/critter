@@ -177,7 +177,7 @@ nav ul li a:hover {
 .creet-container .score-container {
     float:left;
     width:40px;
-    margin-right: 10px  ;
+    margin-right: 10px;
 }
 
 .creet-container .creet-score {
@@ -217,6 +217,11 @@ nav ul li a:hover {
 
 .creet-container .creet-header {
     /*float: left;*/
+}
+
+.creet-container .creet-footer {
+    float: right;
+    position: relative;
 }
 
 .creet-container .creet-author {
