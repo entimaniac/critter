@@ -10,6 +10,7 @@ public class Group {
     private String description;
     private int threshold;
     private String owner;
+    private String twitterAccessToken;
 
     public Group(String id, String name, String twitterHandle, String description, int threshold, String owner) {
         this.id = id;
@@ -69,5 +70,9 @@ public class Group {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getTwitterAccessToken() {
+        return twitterAccessToken;
     }
 }
