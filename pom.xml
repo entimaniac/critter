@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
     <groupId>com.russ4stall.critter</groupId>
     <artifactId>critter-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>war</packaging>
     <name>critter-web</name>
 	<description>critter</description>
@@ -125,8 +125,8 @@
     		<plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                   <source>1.5</source>
-                   <target>1.5</target>
+                   <source>1.7</source>
+                   <target>1.7</target>
                 </configuration>
             </plugin>
     		<plugin>

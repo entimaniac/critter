@@ -38,7 +38,7 @@
                     <input class="form-control" id="threshold-field" name="threshold" type="number" min="0" value="${action.threshold}" placeholder="0">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" id="description-field" name="description" placeholder="Write a brief description of your group.">${action.description}</textarea>
+                    <textarea class="form-control" id="description-field" maxlength="500" name="description" placeholder="Write a brief description of your group.">${action.description}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">CREATE GROUP</button>
                 <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/login">CANCEL</a>

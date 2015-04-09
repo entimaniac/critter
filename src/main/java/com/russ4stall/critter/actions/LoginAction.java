@@ -41,21 +41,24 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     @Override
     public void validate() {
-        if(isEmpty(email)) {
+        if (isEmpty(email)) {
             addFieldError("email", "Email is a required field");
             return;
         }
-        if(isEmpty(password)) {
+        if (isEmpty(password)) {
             addFieldError("password", "Password is a required field");
             return;
         }
-        UserDao userDao = new DbiFactory().getDbi().open(UserDao.class);
-        User user = userDao.getUserByEmail(email);
-        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
-            addFieldError("email", "Incorrect email and password combination");
+
+        try (UserDao userDao = new DbiFactory().getDbi().open(UserDao.class)) {
+            User user = userDao.getUserByEmail(email);
+            if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
+                addFieldError("email", "Incorrect email and password combination");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        userDao.close();
     }
 
     @Override

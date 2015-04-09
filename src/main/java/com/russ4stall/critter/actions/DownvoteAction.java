@@ -15,7 +15,6 @@ import java.util.Map;
 public class DownvoteAction extends ActionSupport implements SessionAware {
     private String creetId;
     private VoteStatus voteStatus;
-
     private Map<String, Object> session;
 
     @Override
@@ -23,12 +22,15 @@ public class DownvoteAction extends ActionSupport implements SessionAware {
         if (voteStatus == VoteStatus.DOWNVOTED) {
             return SUCCESS;
         }
-        CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
+
         User user = (User) session.get("user");
-        if (voteStatus == VoteStatus.UPVOTED) {
-            creetDao.removeUpvote(creetId, user.getId());
+
+        try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
+            if (voteStatus == VoteStatus.UPVOTED) {
+                creetDao.removeUpvote(creetId, user.getId());
+            }
+            creetDao.downvote(creetId, user.getId());
         }
-        creetDao.downvote(creetId, user.getId());
 
         return SUCCESS;
     }

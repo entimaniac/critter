@@ -12,7 +12,7 @@ import java.util.List;
  * Created by russ on 1/21/15.
  */
 @RegisterMapper(GroupMapper.class)
-public interface GroupDao {
+public interface GroupDao extends AutoCloseable {
     @SqlUpdate("INSERT INTO Groupe (id, name, twitter_handle, description, threshold, owner) VALUES (:id, :name, :twitterHandle, :description, :threshold, :owner)")
     void createGroup(@Bind("id") String id,
                      @Bind("name") String name,
@@ -57,8 +57,10 @@ public interface GroupDao {
     @SqlQuery("SELECT * FROM Groupe WHERE name LIKE :searchTerm")
     List<Group> searchForGroupsByName(@Bind("searchTerm") String searchTerm);
 
+    @SqlUpdate("DELETE FROM Groupe WHERE id = :id")
+    void deleteGroup(@Bind("id") String id);
 
+    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :group_id")
+    void deleteUserGroup( @Bind("group_id") String group_id);
 
-
-    void close();
 }

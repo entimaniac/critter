@@ -16,15 +16,14 @@ import java.util.Map;
 @Result(location = "/landing-page", type = "redirect")
 public class JoinGroupAction extends ActionSupport implements SessionAware{
     private String groupId;
-
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
-
         User user = (User) session.get("user");
-        groupDao.joinGroup(user.getId(), groupId);
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            groupDao.joinGroup(user.getId(), groupId);
+        }
 
         return SUCCESS;
     }

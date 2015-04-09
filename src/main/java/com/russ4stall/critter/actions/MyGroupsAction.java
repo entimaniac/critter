@@ -15,15 +15,14 @@ import java.util.Map;
  */
 public class MyGroupsAction extends ActionSupport implements SessionAware {
     private List<Group> userGroups;
-
     private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
-        GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class);
         User user = (User) session.get("user");
-
-        userGroups = groupDao.getUserGroups(user.getId());
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            userGroups = groupDao.getUserGroups(user.getId());
+        }
 
         return INPUT;
     }

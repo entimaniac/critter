@@ -11,7 +11,7 @@ import java.util.List;
  * Created by russ on 3/24/15.
  */
 @RegisterMapper(CreetAndVoteStatusMapper.class)
-public interface CreetAndVoteStatusDao {
+public interface CreetAndVoteStatusDao extends AutoCloseable {
     @SqlQuery("SELECT c.*, \n" +
             "(COALESCE((SELECT count(*) FROM Upvote \n" +
             "WHERE creet_id = c.id\n" +
@@ -27,8 +27,6 @@ public interface CreetAndVoteStatusDao {
             "WHERE group_id = :groupId\n" +
             "ORDER BY timestamp DESC;")
     List<CreetAndVoteStatus> getCreetsByGroup(@Bind("groupId") String groupId, @Bind("userId") String userId);
-
-
 
     @SqlQuery("SELECT c.*,\n" +
             "    (COALESCE((SELECT count(*) FROM Upvote\n" +
@@ -47,5 +45,4 @@ public interface CreetAndVoteStatusDao {
             "    ORDER BY timestamp DESC;")
     List<CreetAndVoteStatus> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
 
-    void close();
 }

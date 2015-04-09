@@ -12,7 +12,7 @@ import java.util.List;
  * Created by russ on 1/30/15.
  */
 @RegisterMapper(CreetMapper.class)
-public interface CreetDao {
+public interface CreetDao extends AutoCloseable {
 
     @SqlUpdate("insert into Creet (id, message, group_id, user_id) values (:id, :message, :groupId, :userId)")
     void createCreet(@Bind("id") String id, @Bind("message") String message, @Bind("groupId") String groupId, @Bind("userId") String userId);
@@ -31,8 +31,6 @@ public interface CreetDao {
             "ORDER BY timestamp DESC;")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
-
-
     @SqlQuery("SELECT c.*,\n" +
             "    (COALESCE((SELECT count(*) FROM Upvote\n" +
             "    WHERE creet_id = c.id\n" +
@@ -47,8 +45,6 @@ public interface CreetDao {
             "    WHERE ug.user_id = :userId\n" +
             "    ORDER BY timestamp DESC;")
     List<Creet> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
-
-
 
     @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")
     List<Creet> getCreetsByAuthor(@Bind("groupId") String userId);
@@ -65,11 +61,12 @@ public interface CreetDao {
     @SqlUpdate("DELETE FROM Downvote WHERE creet_id = :creetId AND user_id = :userId")
     void removeDownvote(@Bind("creetId") String creetId, @Bind("userId") String userId);
 
+    @SqlUpdate("DELETE FROM Creet WHERE group_id = :group_id")
+    void deleteCreetByGroupId(@Bind("group_id") String group_id);
+
     @SqlUpdate("DELETE FROM Creet WHERE id = :id AND user_id = :user_id")
     void deleteCreet(@Bind("id") String id, @Bind("user_id") String user_id);
 
     @SqlQuery("SELECT user_id FROM creet WHERE id = :id")
     String getCreetAuthorById(@Bind("id") String id);
-
-    void close();
 }
