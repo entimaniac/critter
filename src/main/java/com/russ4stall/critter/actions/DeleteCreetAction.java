@@ -27,24 +27,11 @@ public class DeleteCreetAction extends ActionSupport implements SessionAware{
             if(!creetDao.getCreetAuthorById(creetId).equals(user.getId())) {
                 return "error";
             }
-        } catch (Exception e) {}
-        return INPUT;
-    }
-
-    @Override
-    public String execute() throws Exception {
-        User user = (User) session.get("user");
-
-        try  {
-            CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class);
-            if(!creetDao.getCreetAuthorById(creetId).equals(user.getId())) {
-               return "error";
-            }
             creetDao.deleteCreet(creetId, user.getId());
         } catch (Exception e) {}
-
         return SUCCESS;
     }
+
 
     public String getCreetId() { return creetId; }
 

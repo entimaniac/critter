@@ -20,9 +20,10 @@
         </div>
         <div class="creet-message">
             ${creet.message}
+            ${creet.author.id}
         </div>
         <div class="creet-footer">
-            <c:if test="${creet.author.name == sessionScope.get('user').name}">
+            <c:if test="${creet.author.id == sessionScope.get('user').id}">
             <a href="${pageContext.request.contextPath}/delete-creet?creetId=${creet.id}">
                 <img src="${pageContext.request.contextPath}/assets/img/delete-creet-18.png">
             </a>
