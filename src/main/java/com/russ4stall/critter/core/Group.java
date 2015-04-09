@@ -12,13 +12,14 @@ public class Group {
     private String owner;
     private String twitterAccessToken;
 
-    public Group(String id, String name, String twitterHandle, String description, int threshold, String owner) {
+    public Group(String id, String name, String twitterHandle, String description, int threshold, String owner, String twitterAccessToken) {
         this.id = id;
         this.name = name;
         this.twitterHandle = twitterHandle;
         this.description = description;
         this.threshold = threshold;
         this.owner = owner;
+        this.twitterAccessToken = twitterAccessToken;
     }
 
     public Group() {
