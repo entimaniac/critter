@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class CreetAndVoteStatusMapper implements ResultSetMapper<CreetAndVoteStatus> {
     public CreetAndVoteStatus map(int i, ResultSet r, StatementContext statementContext) throws SQLException {
-        User user = new User(r.getString("name"), r.getString("email"), r.getString("password"));
+        User user = new User(r.getString("id"),r.getString("name"), r.getString("email"), r.getString("password"));
         Creet creet = new Creet(r.getString("id"),
                 r.getString("message"),
                 r.getString("group_id"),
