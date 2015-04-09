@@ -19,7 +19,7 @@ public interface CreetAndVoteStatusDao extends AutoCloseable {
             "COALESCE((SELECT count(*) FROM Downvote \n" +
             "WHERE creet_id = c.id\n" +
             "GROUP BY c.id),0)\n" +
-            ") as score, u.name, u.email, u.password, \n" +
+            ") as score, u.name, u.email, u.password,\n" +
             "(SELECT count(*) FROM Upvote WHERE user_id = :userId AND creet_id = c.id) as upvote, \n" +
             "(SELECT count(*) FROM Downvote WHERE user_id = :userId AND creet_id = c.id) as downvote \n" +
             "FROM Creet c \n" +
@@ -35,7 +35,7 @@ public interface CreetAndVoteStatusDao extends AutoCloseable {
             "    COALESCE((SELECT count(*) FROM Downvote\n" +
             "    WHERE creet_id = c.id\n" +
             "    GROUP BY c.id),0)\n" +
-            "            ) as score, u.name, u.email, u.password, \n" +
+            "            ) as score, u.name, u.email, u.password,\n" +
             "(SELECT count(*) FROM Upvote WHERE user_id = :userId AND creet_id = c.id) as upvote, \n" +
             "(SELECT count(*) FROM Downvote WHERE user_id = :userId AND creet_id = c.id) as downvote \n" +
             "    FROM Creet c\n" +
