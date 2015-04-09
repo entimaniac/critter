@@ -11,11 +11,12 @@ public class Group {
     private int threshold;
     private String owner;
 
-    public Group(String id, String name, String twitterHandle, String description, String owner) {
+    public Group(String id, String name, String twitterHandle, String description, int threshold, String owner) {
         this.id = id;
         this.name = name;
         this.twitterHandle = twitterHandle;
         this.description = description;
+        this.threshold = threshold;
         this.owner = owner;
     }
 

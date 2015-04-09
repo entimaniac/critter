@@ -67,11 +67,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         User user = (User) session.get("user");
         groupId = UUID.randomUUID().toString();
 
-        Group group;
-
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             if (isEdit) {
-                group = groupDao.getGroupById(groupId);
+                Group group = groupDao.getGroupById(groupId);
                 //verify user has permission to update group
                 if(!user.getId().equals(group.getOwner())) {
                     return "error";
@@ -80,11 +78,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
                 groupDao.updateGroup(groupId, name, twitterHandle, description, threshold);
 
             } else {
-                group = new Group(groupId, name, twitterHandle, description, user.getId());
-                groupDao.createGroup(group.getId(), name, twitterHandle, description, threshold, user.getId());
-
+                groupDao.createGroup(groupId, name, twitterHandle, description, threshold, user.getId());
                 //automatically join the group creator to the group
-                groupDao.joinGroup(user.getId(), group.getId());
+                groupDao.joinGroup(user.getId(), groupId);
             }
         }
 
