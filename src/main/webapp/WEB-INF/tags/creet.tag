@@ -20,7 +20,6 @@
         </div>
         <div class="creet-message">
             ${creet.message}
-            ${creet.author.id}
         </div>
         <div class="creet-footer">
             <c:if test="${creet.author.id == sessionScope.get('user').id}">
