@@ -67,6 +67,6 @@ public interface CreetDao extends AutoCloseable {
     @SqlUpdate("DELETE FROM Creet WHERE id = :id AND user_id = :user_id")
     void deleteCreet(@Bind("id") String id, @Bind("user_id") String user_id);
 
-    @SqlQuery("SELECT user_id FROM creet WHERE id = :id")
+    @SqlQuery("SELECT user_id FROM Creet WHERE id = :id")
     String getCreetAuthorById(@Bind("id") String id);
 }
