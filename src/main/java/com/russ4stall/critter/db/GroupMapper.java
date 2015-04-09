@@ -17,8 +17,8 @@ public class GroupMapper implements ResultSetMapper<Group> {
                 r.getString("twitter_handle"),
                 r.getString("description"),
                 r.getInt("threshold"),
-                r.getString("owner"),
-                r.getString("twitter_access_token")
+                r.getString("owner")
         );
     }
 }
+

@@ -60,10 +60,7 @@ public interface GroupDao extends AutoCloseable {
     @SqlUpdate("DELETE FROM Groupe WHERE id = :id")
     void deleteGroup(@Bind("id") String id);
 
-    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :group_id")
-    void deleteUserGroup( @Bind("group_id") String group_id);
-
-    @SqlUpdate("UPDATE Groupe set twitter_access_token = :twitterAccessToken WHERE group_id = :group_id")
-    void setTwitterAccessToken( @Bind("group_id") String group_id, @Bind("twitterAccessToken") String twitterAccessToken);
+    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :groupId")
+    void deleteUserGroup(@Bind("groupId") String group_id);
 
 }

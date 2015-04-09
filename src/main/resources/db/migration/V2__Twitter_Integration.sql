@@ -1,2 +1,5 @@
-ALTER TABLE `critter`.`Groupe`
-ADD COLUMN `twitter_access_token` VARCHAR(64) NULL AFTER `owner`;
+CREATE TABLE `critter`.`GroupTwitterCredentials` (
+  `group_id` VARCHAR(36) NOT NULL,
+  `token` VARCHAR(64) NOT NULL,
+  `token_secret` VARCHAR(64) NOT NULL,
+  PRIMARY KEY (`group_id`));

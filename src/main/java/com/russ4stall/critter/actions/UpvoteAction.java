@@ -1,10 +1,16 @@
 package com.russ4stall.critter.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.russ4stall.critter.core.Creet;
+import com.russ4stall.critter.core.GroupTwitterCredentials;
 import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.core.VoteStatus;
 import com.russ4stall.critter.db.CreetDao;
 import com.russ4stall.critter.db.DbiFactory;
+import com.russ4stall.critter.db.GroupDao;
+import com.russ4stall.critter.db.GroupTwitterCredentialsDao;
+import com.russ4stall.critter.tools.CreetTweeter;
+import com.russ4stall.critter.tools.CreetTweeterImpl;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
@@ -32,9 +38,41 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
             }
             //upvote
             creetDao.upvote(creetId, user.getId());
+
+            //see below
+            tryToPublish(creetDao.getCreet(creetId));
+
         }
 
         return SUCCESS;
+    }
+
+    /**
+     * If a creet's score meets the threshold, it publishes it to twitter.
+     *
+     * @param creet The creet to be published.
+     * @throws Exception
+     */
+    void tryToPublish(Creet creet) throws Exception {
+
+        int threshold = 0;
+        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
+            threshold = groupDao.getGroupById(creet.getGroupId()).getThreshold();
+        }
+
+        if (creet.getScore() >= threshold) {
+            CreetTweeter creetTweeter = new CreetTweeterImpl();
+
+            GroupTwitterCredentials credentials;
+            try (GroupTwitterCredentialsDao groupTwitterCredentialsDao = new DbiFactory().getDbi().open(GroupTwitterCredentialsDao.class)) {
+                credentials = groupTwitterCredentialsDao.getGroupTwitterCredentials(creet.getGroupId());
+                creetTweeter.publishToTwitter(creet, credentials);
+            }
+        }
+
+        try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
+            creetDao.markAsPublished(creet.getId());
+        }
     }
 
     public void setCreetId(String creetId) {
