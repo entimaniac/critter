@@ -31,8 +31,6 @@ public interface CreetDao extends AutoCloseable {
             "ORDER BY timestamp DESC;")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
-
-
     @SqlQuery("SELECT c.*,\n" +
             "    (COALESCE((SELECT count(*) FROM Upvote\n" +
             "    WHERE creet_id = c.id\n" +
@@ -47,8 +45,6 @@ public interface CreetDao extends AutoCloseable {
             "    WHERE ug.user_id = :userId\n" +
             "    ORDER BY timestamp DESC;")
     List<Creet> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
-
-
 
     @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")
     List<Creet> getCreetsByAuthor(@Bind("groupId") String userId);
@@ -68,4 +64,9 @@ public interface CreetDao extends AutoCloseable {
     @SqlUpdate("DELETE FROM Creet WHERE group_id = :group_id")
     void deleteCreetByGroupId(@Bind("group_id") String group_id);
 
+    @SqlUpdate("DELETE FROM Creet WHERE id = :id AND user_id = :user_id")
+    void deleteCreet(@Bind("id") String id, @Bind("user_id") String user_id);
+
+    @SqlQuery("SELECT user_id FROM creet WHERE id = :id")
+    String getCreetAuthorById(@Bind("id") String id);
 }
