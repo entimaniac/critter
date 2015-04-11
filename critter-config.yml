@@ -1,0 +1,5 @@
+hostname: "http://russforstall.com:8989"
+
+db-url: "jdbc:mysql://localhost:3306/critter"
+db-user: "critter"
+db-password: "critter"

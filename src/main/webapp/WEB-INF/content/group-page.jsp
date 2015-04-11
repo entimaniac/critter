@@ -24,11 +24,12 @@
             <img src="${pageContext.request.contextPath}/assets/img/settings-32.png"><span>Settings</span>
         </a>
     </div>
-    <div class=""edit-group-settings-button">
+    <div class="edit-group-settings-button">
         <a href="${pageContext.request.contextPath}/delete-group?groupId=${action.group.id}">
             <img src="${pageContext.request.contextPath}/assets/img/trash-delete-32.png"><span>Delete Group</span>
         </a>
     </div>
+    <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${group.id}">LINK TO TWITTER</a>
 </c:if>
 
 
@@ -46,7 +47,7 @@
     </c:when>
 
     <c:otherwise>
-        <a class="btn btn-block btn-primary" href="/join-group?groupId=${group.id}">JOIN THIS GROUP</a>
+        <a class="btn btn-block btn-primary" href="${pageContext.request.contextPath}/join-group?groupId=${group.id}">JOIN THIS GROUP</a>
     </c:otherwise>
 </c:choose>
 

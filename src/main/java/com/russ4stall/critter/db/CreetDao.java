@@ -31,6 +31,21 @@ public interface CreetDao extends AutoCloseable {
             "ORDER BY timestamp DESC;")
     List<Creet> getCreetsByGroup(@Bind("groupId") String groupId);
 
+
+    @SqlQuery("SELECT c.*, u.*,\n"+
+            "            (COALESCE((SELECT count(*) FROM Upvote\n"+
+            "            WHERE creet_id = c.id\n"+
+            "            GROUP BY c.id),0) -\n"+
+            "            COALESCE((SELECT count(*) FROM Downvote \n"+
+            "            WHERE creet_id = c.id\n"+
+            "            GROUP BY c.id),0)\n"+
+            "            ) as score\n"+
+            "            FROM Creet c \n"+
+            "            JOIN User u on c.user_id = u.id" +
+            "            WHERE c.id = :id \n"+
+            "            ;")
+    Creet getCreet(@Bind("id") String creetId);
+
     @SqlQuery("SELECT c.*,\n" +
             "    (COALESCE((SELECT count(*) FROM Upvote\n" +
             "    WHERE creet_id = c.id\n" +
@@ -45,6 +60,9 @@ public interface CreetDao extends AutoCloseable {
             "    WHERE ug.user_id = :userId\n" +
             "    ORDER BY timestamp DESC;")
     List<Creet> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
+
+    @SqlUpdate("UPDATE Creet set sent_to_twitter = 1 where id = :creetId;")
+    void markAsPublished(@Bind("creetId") String creetId);
 
     @SqlQuery("SELECT c.*, u.name, u.email, u.password FROM Creet c JOIN User u ON u.id = c.user_id WHERE user_id = :userId")
     List<Creet> getCreetsByAuthor(@Bind("groupId") String userId);
