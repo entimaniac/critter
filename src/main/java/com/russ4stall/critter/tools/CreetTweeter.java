@@ -5,7 +5,7 @@ import com.russ4stall.critter.core.GroupTwitterCredentials;
 import twitter4j.TwitterException;
 
 /**
- * Created by russellf on 4/9/2015.
+ * @author Russ Forstall
  */
 public interface CreetTweeter {
     void publishToTwitter(Creet creet, GroupTwitterCredentials credentials) throws TwitterException;

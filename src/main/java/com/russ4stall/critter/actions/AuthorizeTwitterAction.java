@@ -18,7 +18,7 @@ import twitter4j.auth.RequestToken;
 import java.util.Map;
 
 /**
- * Redirects users to twitter to authorize Critter.
+ * Gets authorization tokens from twitter.
  *
  * Created by russ on 4/9/15.
  */
@@ -41,10 +41,21 @@ public class AuthorizeTwitterAction extends ActionSupport implements SessionAwar
         AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, oauthVerifier);
 
         try (GroupTwitterCredentialsDao groupTwitterCredentialsDao = new DbiFactory().getDbi().open(GroupTwitterCredentialsDao.class)) {
-            groupTwitterCredentialsDao.createGroupTwitterCredentials(groupId, accessToken.getToken(), accessToken.getTokenSecret());
+            groupTwitterCredentialsDao.createGroupTwitterCredentials(
+                    groupId,
+                    accessToken.getScreenName(),
+                    accessToken.getUserId(),
+                    accessToken.getToken(),
+                    accessToken.getTokenSecret()
+            );
         }
 
+
         return SUCCESS;
+    }
+
+    public String getGroupId() {
+        return groupId;
     }
 
     public void setGroupId(String groupId) {

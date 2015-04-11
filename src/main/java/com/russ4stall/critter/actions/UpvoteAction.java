@@ -40,8 +40,9 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
             creetDao.upvote(creetId, user.getId());
 
             //see below
-            tryToPublish(creetDao.getCreet(creetId));
-
+            if (tryToPublish(creetDao.getCreet(creetId))) {
+                creetDao.markAsPublished(creetId);
+            }
         }
 
         return SUCCESS;
@@ -51,9 +52,13 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
      * If a creet's score meets the threshold, it publishes it to twitter.
      *
      * @param creet The creet to be published.
+     * @return True if creet is sent to twitter.
      * @throws Exception
      */
-    void tryToPublish(Creet creet) throws Exception {
+    boolean tryToPublish(Creet creet) throws Exception {
+        if (creet.hasBeenSentToTwitter()) {
+            return false;
+        }
 
         int threshold = 0;
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
@@ -68,11 +73,10 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
                 credentials = groupTwitterCredentialsDao.getGroupTwitterCredentials(creet.getGroupId());
                 creetTweeter.publishToTwitter(creet, credentials);
             }
+            return true;
         }
 
-        try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
-            creetDao.markAsPublished(creet.getId());
-        }
+        return false;
     }
 
     public void setCreetId(String creetId) {

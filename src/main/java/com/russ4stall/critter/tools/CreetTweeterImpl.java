@@ -9,7 +9,7 @@ import twitter4j.auth.AccessToken;
 
 /**
  *
- * Created by russellf on 4/9/2015.
+ * @author Russ Forstall
  */
 public class CreetTweeterImpl implements CreetTweeter {
     @Override

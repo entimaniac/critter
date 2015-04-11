@@ -14,6 +14,8 @@ import twitter4j.auth.RequestToken;
 import java.util.Map;
 
 /**
+ * Redirects users to twitter to authorize Critter.
+ *
  * @author Russ Forstall
  */
 @Result(name="input", location = "${authorizationURL}", type = "redirect")
@@ -38,8 +40,8 @@ public class RequestTwitterAuthorizationAction extends ActionSupport implements 
         Twitter twitter = TwitterFactory.getSingleton();
         RequestToken requestToken = null;
         try {
-            //requestToken = twitter.getOAuthRequestToken("https://rabidwolves.com/authorize-twitter?groupId=" + groupId);
-            requestToken = twitter.getOAuthRequestToken("http://russforstall.com:8989/authorize-twitter?groupId=" + groupId);
+            requestToken = twitter.getOAuthRequestToken("http://rabidwolves.com/authorize-twitter?groupId=" + groupId);
+            //requestToken = twitter.getOAuthRequestToken("http://russforstall.com:8989/authorize-twitter?groupId=" + groupId);
         } catch (Exception e) {
             e.printStackTrace();
             //return "error";
