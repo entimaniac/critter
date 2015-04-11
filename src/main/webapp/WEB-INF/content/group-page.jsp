@@ -29,7 +29,7 @@
             <img src="${pageContext.request.contextPath}/assets/img/trash-delete-32.png"><span>Delete Group</span>
         </a>
     </div>
-    <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/authorize-twitter?groupId=${group.id}">LINK TO TWITTER</a>
+    <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${group.id}">LINK TO TWITTER</a>
 </c:if>
 
 

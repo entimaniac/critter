@@ -18,67 +18,33 @@ import twitter4j.auth.RequestToken;
 import java.util.Map;
 
 /**
- * GET
  * Redirects users to twitter to authorize Critter.
- *
- * POST
- * Retrieve and persist access token.
  *
  * Created by russ on 4/9/15.
  */
-@Results({
-        @Result(name="input", location = "${authorizationURL}", type = "redirect"),
-        @Result(name="success", location="/landing-page", type = "redirect")
-})
+
+@Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class AuthorizeTwitterAction extends ActionSupport implements SessionAware {
-    private String authorizationURL;
     private String groupId;
 
     private String oauthToken;
     private String oauthVerifier;
 
-    Map<String, Object> session;
+    private Map<String, Object> session;
 
     @Override
     public String input() throws Exception {
-        User user = (User) session.get("user");
-        Group group;
-        try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
-            group = groupDao.getGroupById(groupId);
-
-            if (!user.getId().equals(group.getOwner())) {
-                return "error";
-            }
-        }
-
         Twitter twitter = TwitterFactory.getSingleton();
-        RequestToken requestToken;
-        try {
-            requestToken = twitter.getOAuthRequestToken("https://rabidwolves.com?groupId=" + groupId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
-        }
 
-        authorizationURL = requestToken.getAuthorizationURL();
+        RequestToken requestToken = (RequestToken) session.get("requestToken");
 
-        return INPUT;
-    }
-
-    @Override
-    public String execute() throws Exception {
-        Twitter twitter = TwitterFactory.getSingleton();
-        AccessToken accessToken = twitter.getOAuthAccessToken(oauthToken, oauthVerifier);
+        AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, oauthVerifier);
 
         try (GroupTwitterCredentialsDao groupTwitterCredentialsDao = new DbiFactory().getDbi().open(GroupTwitterCredentialsDao.class)) {
             groupTwitterCredentialsDao.createGroupTwitterCredentials(groupId, accessToken.getToken(), accessToken.getTokenSecret());
         }
 
         return SUCCESS;
-    }
-
-    public String getAuthorizationURL() {
-        return authorizationURL;
     }
 
     public void setGroupId(String groupId) {

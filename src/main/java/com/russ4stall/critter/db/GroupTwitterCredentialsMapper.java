@@ -15,6 +15,8 @@ public class GroupTwitterCredentialsMapper implements ResultSetMapper<GroupTwitt
     public GroupTwitterCredentials map(int i, ResultSet r, StatementContext statementContext) throws SQLException {
         return new GroupTwitterCredentials(
                 r.getString("id"),
+                r.getString("screen_name"),
+                r.getInt("user_id"),
                 r.getString("token"),
                 r.getString("token_secret")
         );
