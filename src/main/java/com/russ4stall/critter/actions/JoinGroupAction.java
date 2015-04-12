@@ -11,9 +11,9 @@ import java.util.Map;
 
 
 /**
- * Created by russ on 1/29/15.
+ * @author Russ Forstall
  */
-@Result(location = "/landing-page", type = "redirect")
+@Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class JoinGroupAction extends ActionSupport implements SessionAware{
     private String groupId;
     private Map<String, Object> session;
@@ -26,6 +26,10 @@ public class JoinGroupAction extends ActionSupport implements SessionAware{
         }
 
         return SUCCESS;
+    }
+
+    public String getGroupId() {
+        return groupId;
     }
 
     public void setGroupId(String groupId) {
