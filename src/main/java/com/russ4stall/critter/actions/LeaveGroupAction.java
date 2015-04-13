@@ -9,12 +9,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
 
-
 /**
  * @author Russ Forstall
  */
-@Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
-public class JoinGroupAction extends ActionSupport implements SessionAware{
+@Result(location = "/landing-page", type = "redirect")
+public class LeaveGroupAction extends ActionSupport implements SessionAware {
     private String groupId;
     private Map<String, Object> session;
 
@@ -22,20 +21,17 @@ public class JoinGroupAction extends ActionSupport implements SessionAware{
     public String input() throws Exception {
         User user = (User) session.get("user");
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
-            groupDao.joinGroup(user.getId(), groupId);
+            groupDao.leaveGroup(user.getId(), groupId);
         }
 
         return SUCCESS;
-    }
-
-    public String getGroupId() {
-        return groupId;
     }
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
 
+    @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
     }
