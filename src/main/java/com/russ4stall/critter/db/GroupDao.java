@@ -47,12 +47,21 @@ public interface GroupDao extends AutoCloseable {
      * Creates a relationship between a user and a group
      * in the UserGroupe table.
      *
-     * @param userId
-     * @param groupId
+     * @param userId The id of the user.
+     * @param groupId The id of the group.
      */
     @SqlUpdate("INSERT INTO UserGroupe (user_id, group_id) VALUES (:userId, :groupId)")
     void joinGroup(@Bind("userId") String userId, @Bind("groupId") String groupId);
 
+    /**
+     * Removes a relationship between a user and a group
+     * in the UserGroupe table.
+     *
+     * @param userId The id of the user.
+     * @param groupId The id of the group.
+     */
+    @SqlUpdate("DELETE FROM UserGroupe WHERE user_id = :userId AND group_id = :groupId")
+    void leaveGroup(@Bind("userId") String userId, @Bind("groupId") String groupId);
 
     @SqlQuery("SELECT * FROM Groupe WHERE name LIKE :searchTerm")
     List<Group> searchForGroupsByName(@Bind("searchTerm") String searchTerm);

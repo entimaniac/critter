@@ -18,6 +18,7 @@
 <app:nav-common/>
 
 <h1>${action.group.name}</h1>
+
 <c:if test="${action.group.owner == sessionScope.get('user').id}">
     <div class="edit-group-settings-button">
         <a href="${pageContext.request.contextPath}/create-group?groupId=${action.group.id}&isEdit=True">
@@ -32,6 +33,13 @@
     <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${group.id}">LINK TO TWITTER</a>
 </c:if>
 
+<c:if test="${action.group.owner != sessionScope.get('user').id}">
+    <div class="leave-group-btn btn">
+        <a href="${pageContext.request.contextPath}/leave-group?groupId=${action.group.id}&isEdit=True">
+            Leave group
+        </a>
+    </div>
+</c:if>
 
 <h3>${action.group.twitterHandle}</h3>
 <p>
