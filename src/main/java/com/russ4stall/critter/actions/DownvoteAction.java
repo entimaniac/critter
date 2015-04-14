@@ -19,17 +19,16 @@ public class DownvoteAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-        if (voteStatus == VoteStatus.DOWNVOTED) {
-            return SUCCESS;
-        }
-
         User user = (User) session.get("user");
 
         try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
             if (voteStatus == VoteStatus.UPVOTED) {
                 creetDao.removeUpvote(creetId, user.getId());
+                creetDao.downvote(creetId, user.getId());
             }
-            creetDao.downvote(creetId, user.getId());
+            else if (voteStatus == VoteStatus.DOWNVOTED) {
+                creetDao.removeDownvote(creetId, user.getId());
+            }
         }
 
         return SUCCESS;
