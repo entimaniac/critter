@@ -14,6 +14,7 @@ import java.util.Map;
  */
 @Result(location = "/my-groups", type = "redirect")
 public class DeleteGroupAction extends ActionSupport implements SessionAware {
+    private String name;
     private String groupId;
     private Map<String, Object> session;
 
@@ -48,6 +49,10 @@ public class DeleteGroupAction extends ActionSupport implements SessionAware {
         return SUCCESS;
 
     }
+
+    public String getName() { return name;}
+
+    public void setName(String name) { this.name = name;}
 
     public String getGroupId() {
         return groupId;

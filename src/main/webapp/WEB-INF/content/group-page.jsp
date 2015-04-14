@@ -26,7 +26,7 @@
         </a>
     </div>
     <div class="edit-group-settings-button">
-        <a href="${pageContext.request.contextPath}/delete-group?groupId=${action.group.id}">
+        <a href="${pageContext.request.contextPath}/delete-group?groupId=${action.group.id}&name=${action.group.name}">
             <img src="${pageContext.request.contextPath}/assets/img/trash-delete-32.png"><span>Delete Group</span>
         </a>
     </div>
