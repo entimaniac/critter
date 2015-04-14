@@ -1,6 +1,5 @@
 body {
     margin-top: 50px;
-    overflow: hidden;
     background-color: #f0f0f0;
     max-width: 1000px;
     margin-left: auto;
@@ -238,7 +237,7 @@ nav ul li a:hover {
 
 .creet-container .creet-message {
     float:left;
-
+    width: 90%;
 }
 
 abbr[title] {
