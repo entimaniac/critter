@@ -10,6 +10,7 @@
     <title>CRITTER</title>
 </head>
 <body>
+
 <app:nav-back title="GROUP SEARCH"/>
 
 
@@ -24,17 +25,27 @@
 
     </div>
     <div id="groups-list">
-        <c:forEach var="group" items="${action.groups}">
+    <c:choose>
+        <c:when test="${ !empty(action.groups) }">
+            <c:forEach var="group" items="${action.groups}">
+                <div class="group-list-display">
+                    <a class="group-list-display-name" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">
+                            ${group.name}
+                        <c:if test="${group.owner == sessionScope.get('user').id}">
+                            <span class="group-list-display-owner">owner</span>
+                        </c:if>
+                    </a>
+                </div>
+            </c:forEach>
+        </c:when>
+        <c:when test="${ empty(action.groups) && !empty(action.searchTerm)}">
             <div class="group-list-display">
-                <a class="group-list-display-name" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">
-                        ${group.name}
-                    <c:if test="${group.owner == sessionScope.get('user').id}">
-                        <span class="group-list-display-owner">owner</span>
-                    </c:if>
-                </a>
-        </c:forEach>
-
-    </div>
+                <p align="center" class="group-list-display-name">Search returned no groups!</p>
+                <img src="">
+            </div>
+        </c:when>
+    </c:choose>
+</div>
 </body>
 
 

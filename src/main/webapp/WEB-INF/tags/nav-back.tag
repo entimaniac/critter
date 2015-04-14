@@ -12,5 +12,12 @@
         <li class="page-title-nav">
             ${title}
         </li>
+        <li>
+            <a class="nav-button"  href="${pageContext.request.contextPath}/landing-page">
+                <img src="/assets/img/home-32.png" height="16" width="16">
+                <br/>
+                <span>HOME</span>
+            </a>
+        </li>
     </ul>
 </nav>
