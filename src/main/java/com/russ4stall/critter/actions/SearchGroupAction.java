@@ -20,6 +20,16 @@ public class SearchGroupAction extends ActionSupport {
     }
 
     @Override
+    public void validate() {
+        if(searchTerm.length() > 120){
+            addFieldError("searchTerm","Try searching for a shorter group name.");
+            return;
+        }
+
+
+    }
+
+    @Override
     public String execute() throws Exception {
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             //adding %'s because jdbi doesn't allow it in the definition

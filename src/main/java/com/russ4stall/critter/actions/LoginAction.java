@@ -44,6 +44,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
         if (isEmpty(email)) {
             addFieldError("email", "Email is a required field");
             return;
+        }else if (email.length() > 45) {
+            addFieldError("email","Please reduce the length of your email address");
+            return;
         }
         if (isEmpty(password)) {
             addFieldError("password", "Password is a required field");

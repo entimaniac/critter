@@ -17,7 +17,7 @@
 
         <form role="form" action="${pageContext.request.contextPath}/search-group" method="post">
             <div class="form-group">
-                <input class="form-control" id="searchTerm-field" name="searchTerm" type="search" value="${action.searchTerm}" placeholder="search for a group">
+                <input class="form-control" id="searchTerm-field" maxlength="120" name="searchTerm" type="search" value="${action.searchTerm}" placeholder="search for a group">
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg">SEARCH</button>
         </form>

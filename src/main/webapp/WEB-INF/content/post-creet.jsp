@@ -23,7 +23,7 @@
                         <form role="form" action="${pageContext.request.contextPath}/post-creet" method="post">
 
                             <label for="message-field">Message:</label>
-                            <textarea class="form-control" id="message-field" name="message" type="text" value="${action.message}"></textarea>
+                            <textarea class="form-control" id="message-field" name="message" maxlength="120" type="text" value="${action.message}"></textarea>
                             <label for="group-field">Post in group:</label>
                             <select id="group-field" name="groupId" class="form-control">
                                 <c:forEach var="group" items="${action.userGroups}">

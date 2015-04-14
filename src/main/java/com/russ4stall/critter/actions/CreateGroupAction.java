@@ -45,6 +45,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         if (isEmpty(name)) {
             addFieldError("name", "Don't leave name blank dummy!");
             return;
+        }else if(name.length() > 45) {
+            addFieldError("name","Woooooah, let's keep this on a two name basis");
+            return;
         }
 
         if (threshold < 0) {

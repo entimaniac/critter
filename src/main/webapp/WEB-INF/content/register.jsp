@@ -45,16 +45,16 @@
         </c:forEach>
         <form role="form" action="${pageContext.request.contextPath}/register" method="post">
             <div class="form-group">
-                <input id="name-field" class="form-control"  name="name" type="text" value="${action.name}" placeholder="NAME">
+                <input id="name-field" class="form-control"  name="name" maxlength="45" type="text" value="${action.name}" placeholder="NAME">
             </div>
             <div class="form-group">
-                <input id="email-field" class="form-control" name="email" type="email" value="${action.email}" placeholder="EMAIL">
+                <input id="email-field" class="form-control" name="email" maxlength="45" type="email" value="${action.email}" placeholder="EMAIL">
             </div>
             <div class="form-group">
-                <input id="password-field" class="form-control" name="password" type="password" placeholder="PASSWORD">
+                <input id="password-field" class="form-control" name="password" maxlength="20" type="password" placeholder="PASSWORD">
             </div>
             <div class="form-group">
-                <input id="confirm-password-field" class="form-control" name="confirmPassword" type="password" placeholder="RETYPE PASSWORD">
+                <input id="confirm-password-field" class="form-control" name="confirmPassword" maxlength="20" type="password" placeholder="RETYPE PASSWORD">
             </div>
 
             <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>

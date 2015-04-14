@@ -28,10 +28,10 @@
             </c:forEach>
             <form role="form" action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group">
-                    <input class="form-control" id="email-field" name="email" type="email" value="${action.email}" placeholder="EMAIL">
+                    <input class="form-control" id="email-field" name="email" maxlength="45" type="email" value="${action.email}" placeholder="EMAIL">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" id="password-field" name="password" type="password" placeholder="PASSWORD">
+                    <input class="form-control" id="password-field" maxlength="65" name="password" type="password" placeholder="PASSWORD">
                 </div>
                     <button class="btn btn-block btn-primary" type="submit">SIGN IN</button>
                 <a class="btn btn-block btn-primary" href="${pageContext.request.contextPath}/register">CREATE AN ACCOUNT</a>
