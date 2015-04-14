@@ -37,6 +37,16 @@ public class PostCreetAction extends ActionSupport implements SessionAware {
     }
 
     @Override
+    public void validate() {
+
+        if(message.length() > 120){
+            addFieldError("message","Alright Tolstoy...let's keep this to less than 120 characters!");
+            return;
+        }
+
+    }
+
+    @Override
     public String execute() throws Exception {
         User user = (User) session.get("user");
 
