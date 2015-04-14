@@ -202,6 +202,10 @@ nav ul li a:hover {
     padding-left: 4px;
 }
 
+.upvote-btn:hover, .downvote-btn:hover {
+    cursor: pointer;
+}
+
 .downvote-btn {
     padding-left: 4px;
 }
@@ -237,7 +241,7 @@ nav ul li a:hover {
 
 .creet-container .creet-message {
     float:left;
-    width: 90%;
+    width: 83%;
 }
 
 abbr[title] {
