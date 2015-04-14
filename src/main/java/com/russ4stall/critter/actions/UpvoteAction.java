@@ -25,20 +25,17 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-        //if user has already upvoted this creet, then do nothing
-        if (voteStatus == VoteStatus.UPVOTED) {
-            return SUCCESS;
-        }
         User user = (User) session.get("user");
 
         try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
             //if user has already downvoted this creet, then remove downvote
             if (voteStatus == VoteStatus.DOWNVOTED) {
                 creetDao.removeDownvote(creetId, user.getId());
+                creetDao.upvote(creetId, user.getId());
             }
-            //upvote
-            creetDao.upvote(creetId, user.getId());
-
+            else if(voteStatus == VoteStatus.UPVOTED) {
+                creetDao.removeUpvote(creetId, user.getId());
+            }
             //see below
             if (tryToPublish(creetDao.getCreet(creetId))) {
                 creetDao.markAsPublished(creetId);
