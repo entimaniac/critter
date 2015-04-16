@@ -30,7 +30,8 @@
                 <div class="form-group">
                     <input class="form-control" id="name-field" name="name" maxlength="45" type="text" value="${action.name}" placeholder="NAME">
                 </div>
-                <div class="form-group">
+                <div class="form-group input-group">
+                    <span class="input-group-addon">@</span>
                     <input class="form-control" id="twitter-handle-field" name="twitterHandle" maxlength="45" type="text" value="${action.twitterHandle}" placeholder="TWITTER HANDLE">
                 </div>
                 <div class="form-group">
