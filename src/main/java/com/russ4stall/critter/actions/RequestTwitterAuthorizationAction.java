@@ -48,8 +48,8 @@ public class RequestTwitterAuthorizationAction extends ActionSupport implements 
 
         RequestToken requestToken = null;
         try {
-            //requestToken = twitter.getOAuthRequestToken("http://rabidwolves.com/authorize-twitter?groupId=" + groupId);
-            requestToken = twitter.getOAuthRequestToken("http://russforstall.com:56565/authorize-twitter?groupId=" + groupId);
+            requestToken = twitter.getOAuthRequestToken("http://rabidwolves.com/authorize-twitter?groupId=" + groupId);
+            //requestToken = twitter.getOAuthRequestToken("http://russforstall.com:56565/authorize-twitter?groupId=" + groupId);
         } catch (Exception e) {
             e.printStackTrace();
             //return "error";
