@@ -16,7 +16,7 @@ public class GroupTwitterCredentialsMapper implements ResultSetMapper<GroupTwitt
         return new GroupTwitterCredentials(
                 r.getString("group_id"),
                 r.getString("screen_name"),
-                r.getInt("user_id"),
+                r.getLong("user_id"),
                 r.getString("token"),
                 r.getString("token_secret")
         );

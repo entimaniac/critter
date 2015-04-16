@@ -1,16 +1,17 @@
 package com.russ4stall.critter.core;
 
+
 /**
  * @author Russ Forstall
  */
 public class GroupTwitterCredentials {
     private String groupId;
     private String screenName;
-    private int userId;
+    private long userId;
     private String token;
     private String tokenSecret;
 
-    public GroupTwitterCredentials(String groupId, String screenName, int userId, String token, String tokenSecret) {
+    public GroupTwitterCredentials(String groupId, String screenName, long userId, String token, String tokenSecret) {
         this.groupId = groupId;
         this.screenName = screenName;
         this.userId = userId;
@@ -26,7 +27,7 @@ public class GroupTwitterCredentials {
         return screenName;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 

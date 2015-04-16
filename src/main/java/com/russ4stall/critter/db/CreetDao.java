@@ -41,9 +41,8 @@ public interface CreetDao extends AutoCloseable {
             "GROUP BY c.id),0)\n"+
             ") as score\n"+
             "FROM Creet c \n"+
-            "JOIN User u on c.user_id = u.id" +
-            "WHERE c.id = :id \n"+
-            ";")
+            "JOIN User u on c.user_id = u.id \n" +
+            "WHERE c.id = :id;")
     Creet getCreet(@Bind("id") String creetId);
 
     @SqlQuery("SELECT c.*,\n" +
