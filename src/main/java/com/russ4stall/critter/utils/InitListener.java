@@ -24,9 +24,6 @@ public class InitListener implements ServletContextListener {
         flyway.setValidateOnMigrate(false);
         flyway.migrate();
 
-
-        Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer("EDlHZIkC6bJZWFbiP5F4YngFJ", "IrousFf2sQy1zaBavTrx5YaP4CzR73dPbm5MnNlyp96APvYcyM");
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

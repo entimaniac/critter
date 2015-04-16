@@ -4,6 +4,5 @@ CREATE TABLE `critter`.`GroupTwitterCredentials` (
   `user_id` INT NOT NULL,
   `token` VARCHAR(64) NOT NULL,
   `token_secret` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`group_id`),
-  UNIQUE KEY (`user_id`)
+  PRIMARY KEY (`group_id`)
 );

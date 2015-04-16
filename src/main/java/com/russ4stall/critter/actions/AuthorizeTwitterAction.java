@@ -1,21 +1,20 @@
 package com.russ4stall.critter.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.russ4stall.critter.core.Group;
-import com.russ4stall.critter.core.GroupTwitterCredentials;
-import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.db.DbiFactory;
-import com.russ4stall.critter.db.GroupDao;
 import com.russ4stall.critter.db.GroupTwitterCredentialsDao;
+import com.russ4stall.critter.utils.CritterProperties;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.SessionAware;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 /**
  * Gets authorization tokens from twitter.
@@ -26,6 +25,7 @@ import java.util.Map;
 @Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class AuthorizeTwitterAction extends ActionSupport implements SessionAware {
     private String groupId;
+    private String denied;
 
     private String oauthToken;
     private String oauthVerifier;
@@ -34,7 +34,18 @@ public class AuthorizeTwitterAction extends ActionSupport implements SessionAwar
 
     @Override
     public String input() throws Exception {
-        Twitter twitter = TwitterFactory.getSingleton();
+
+        if (!isEmpty(denied)) {
+            //todo: inform user that authorization has been denied
+            return SUCCESS;
+        }
+
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey(CritterProperties.TWITTER_CONSUMER_KEY)
+                .setOAuthConsumerSecret(CritterProperties.TWITTER_SECRET_KEY);
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
 
         RequestToken requestToken = (RequestToken) session.get("requestToken");
 
@@ -50,7 +61,7 @@ public class AuthorizeTwitterAction extends ActionSupport implements SessionAwar
             );
         }
 
-
+        //todo: inform user that authorization was successful
         return SUCCESS;
     }
 
@@ -60,6 +71,10 @@ public class AuthorizeTwitterAction extends ActionSupport implements SessionAwar
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
+    }
+
+    public void setDenied(String denied) {
+        this.denied = denied;
     }
 
     public void setOauth_token(String oauth_token) {

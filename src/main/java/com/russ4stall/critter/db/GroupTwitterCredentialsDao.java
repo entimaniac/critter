@@ -24,4 +24,7 @@ public interface GroupTwitterCredentialsDao extends AutoCloseable {
 
     @SqlQuery("SELECT * FROM GroupTwitterCredentials WHERE group_id = :groupId")
     GroupTwitterCredentials getGroupTwitterCredentials(@Bind("groupId") String groupId);
+
+    @SqlQuery("SELECT count(1) FROM GroupTwitterCredentials WHERE group_id = :groupId")
+    boolean hasTwitterCredentials(@Bind("groupId") String groupId);
 }
