@@ -19,8 +19,6 @@
     </c:otherwise>
 </c:choose>
 
-
-
         <div class="center-block user-form">
             <c:forEach items="${action.fieldErrors}" var="error">
                 <span class="text-danger">${error.value}</span><br/>
