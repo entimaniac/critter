@@ -2,12 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 
+
+
 <%--@elvariable id="action" type="com.russ4stall.critter.actions.PostCreetAction"--%>
 
 <html>
 <head>
     <app:head-common/>
     <title>CRITTER</title>
+
+    <script>
+        function getCharCount() {
+            var count = $('#message-field').val().length;
+            var remaining = 120 - count;
+            $('#chars-left').html(remaining+ " characters remaining");
+        }
+
+        $( document ).ready(function() {
+            $("#message-field").keyup(function() {
+                getCharCount();
+            });
+        });
+
+
+
+    </script>
 </head>
 <body>
     <app:nav-back title="POST"/>
@@ -24,6 +43,8 @@
 
                             <label for="message-field">Message:</label>
                             <textarea class="form-control" id="message-field" name="message" maxlength="120" type="text" value="${action.message}"></textarea>
+                            <span id="chars-left">120 characters remaining</span>
+                            <br>
                             <label for="group-field">Post in group:</label>
                             <select id="group-field" name="groupId" class="form-control">
                                 <c:forEach var="group" items="${action.userGroups}">
@@ -49,6 +70,13 @@
     </c:choose>
 
 
+    <script> $(function(){
+        $("#message-field").characterCounter({
+            limit: '120',
+            counterFormat: '%l / 120'
+        });
+    }         );
+    </script>
 
 </body>
 </html>
