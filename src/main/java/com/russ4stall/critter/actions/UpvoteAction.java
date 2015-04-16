@@ -16,7 +16,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 /**
- * Created by russ on 1/30/15.
+ * @author Russ Forstall
  */
 public class UpvoteAction extends ActionSupport implements SessionAware {
     private String creetId;

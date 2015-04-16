@@ -3,14 +3,13 @@ package com.russ4stall.critter.actions;
 import com.opensymphony.xwork2.ActionSupport;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupTwitterCredentialsDao;
-import com.russ4stall.critter.utils.CritterProperties;
+import com.russ4stall.critter.tools.TwitterConfigFactory;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
-import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.Map;
 
@@ -40,11 +39,7 @@ public class AuthorizeTwitterAction extends ActionSupport implements SessionAwar
             return SUCCESS;
         }
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(CritterProperties.TWITTER_CONSUMER_KEY)
-                .setOAuthConsumerSecret(CritterProperties.TWITTER_SECRET_KEY);
-        TwitterFactory tf = new TwitterFactory(cb.build());
+        TwitterFactory tf = new TwitterFactory(TwitterConfigFactory.getConfig());
         Twitter twitter = tf.getInstance();
 
         RequestToken requestToken = (RequestToken) session.get("requestToken");

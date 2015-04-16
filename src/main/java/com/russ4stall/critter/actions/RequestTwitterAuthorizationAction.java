@@ -5,13 +5,13 @@ import com.russ4stall.critter.core.Group;
 import com.russ4stall.critter.core.User;
 import com.russ4stall.critter.db.DbiFactory;
 import com.russ4stall.critter.db.GroupDao;
+import com.russ4stall.critter.tools.TwitterConfigFactory;
 import com.russ4stall.critter.utils.CritterProperties;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.RequestToken;
-import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.Map;
 
@@ -39,17 +39,16 @@ public class RequestTwitterAuthorizationAction extends ActionSupport implements 
             }
         }
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(CritterProperties.TWITTER_CONSUMER_KEY)
-                .setOAuthConsumerSecret(CritterProperties.TWITTER_SECRET_KEY);
-        TwitterFactory tf = new TwitterFactory(cb.build());
+        TwitterFactory tf = new TwitterFactory(TwitterConfigFactory.getConfig());
         Twitter twitter = tf.getInstance();
 
         RequestToken requestToken = null;
         try {
-            requestToken = twitter.getOAuthRequestToken("http://rabidwolves.com/authorize-twitter?groupId=" + groupId);
-            //requestToken = twitter.getOAuthRequestToken("http://russforstall.com:56565/authorize-twitter?groupId=" + groupId);
+            requestToken = twitter.getOAuthRequestToken(
+                    CritterProperties.APPLICATION_HOST_NAME +
+                            "/authorize-twitter?groupId=" +
+                            groupId
+            );
         } catch (Exception e) {
             e.printStackTrace();
             //return "error";
