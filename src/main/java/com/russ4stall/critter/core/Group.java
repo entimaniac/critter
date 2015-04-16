@@ -1,7 +1,7 @@
 package com.russ4stall.critter.core;
 
 /**
- * Created by russellf on 10/24/2014.
+ * @author Russ Forstall
  */
 public class Group {
     private String id;
@@ -18,9 +18,6 @@ public class Group {
         this.description = description;
         this.threshold = threshold;
         this.owner = owner;
-    }
-
-    public Group() {
     }
 
     public String getId() {
@@ -43,32 +40,17 @@ public class Group {
         return twitterHandle;
     }
 
-    public void setTwitterHandle(String twitterHandle) {
-        this.twitterHandle = twitterHandle;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getThreshold() {
         return threshold;
     }
 
-    public void setThreshold(int threshold) {
-        this.threshold = threshold;
-    }
-
     public String getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 }
 

@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import java.util.List;
 
 /**
- * Created by russ on 1/21/15.
+ * @author Russ Forstall
  */
 @RegisterMapper(GroupMapper.class)
 public interface GroupDao extends AutoCloseable {

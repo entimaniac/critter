@@ -8,27 +8,6 @@
 <head>
     <app:head-common/>
     <title>REGISTER</title>
-   <%-- <style>
-        body {
-            margin-top: 40px;
-            background-color: #343838;
-        }
-
-        .center-block {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .user-form {
-            max-width: 300px;
-        }
-
-        .title {
-            width: 140px;
-            margin-bottom: 40px;
-        }
-
-    </style>--%>
-
 </head>
 <body>
 

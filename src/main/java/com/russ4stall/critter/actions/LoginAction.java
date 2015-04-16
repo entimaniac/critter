@@ -29,8 +29,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     private Map<String, Object> session;
 
-    private UserDao userDao;
-
     public String input() {
         //if user is already logged in, redirect to landing page
         if (session.containsKey("user")) {

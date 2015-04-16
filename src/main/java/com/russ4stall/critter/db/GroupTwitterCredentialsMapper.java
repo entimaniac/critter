@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by russellf on 4/9/2015.
+ * @author Russ Forstall
  */
 public class GroupTwitterCredentialsMapper implements ResultSetMapper<GroupTwitterCredentials> {
     @Override

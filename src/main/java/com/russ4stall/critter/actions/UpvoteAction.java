@@ -59,7 +59,7 @@ public class UpvoteAction extends ActionSupport implements SessionAware {
             return false;
         }
 
-        int threshold = 0;
+        int threshold;
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             threshold = groupDao.getGroupById(creet.getGroupId()).getThreshold();
         }

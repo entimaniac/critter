@@ -12,7 +12,7 @@
 <body>
 <c:choose>
     <c:when test="${isEdit}">
-        <app:nav-back title="Group Settings"/>
+        <app:nav-back title="Edit Settings"/>
     </c:when>
     <c:otherwise>
         <app:nav-back title="Create a Group"/>

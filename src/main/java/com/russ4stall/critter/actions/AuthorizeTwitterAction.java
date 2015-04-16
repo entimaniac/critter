@@ -25,7 +25,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 public class AuthorizeTwitterAction extends ActionSupport implements SessionAware {
     private String groupId;
     private String denied;
-
+    @SuppressWarnings("UnusedDeclaration")
     private String oauthToken;
     private String oauthVerifier;
 
