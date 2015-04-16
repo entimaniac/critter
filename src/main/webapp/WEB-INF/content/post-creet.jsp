@@ -2,6 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.charactercounter.js"></script>
+<script id="char-count">
+    $("#message-field").characterCounter({
+        limit: '120'
+    });
+
+</script>
+
 <%--@elvariable id="action" type="com.russ4stall.critter.actions.PostCreetAction"--%>
 
 <html>
@@ -23,7 +31,7 @@
                         <form role="form" action="${pageContext.request.contextPath}/post-creet" method="post">
 
                             <label for="message-field">Message:</label>
-                            <textarea class="form-control" id="message-field" name="message" maxlength="120" type="text" value="${action.message}"></textarea>
+                            <textarea class="form-control" oninput="char-count" id="message-field" name="message" maxlength="120" type="text" value="${action.message}"></textarea>
                             <label for="group-field">Post in group:</label>
                             <select id="group-field" name="groupId" class="form-control">
                                 <c:forEach var="group" items="${action.userGroups}">
@@ -49,6 +57,13 @@
     </c:choose>
 
 
+    <script> $(function(){
+        $("#message-field").characterCounter({
+            limit: '120',
+            counterFormat: '%l / 120'
+        });
+    }         );
+    </script>
 
 </body>
 </html>
