@@ -42,7 +42,7 @@ public class RequestTwitterAuthorizationAction extends ActionSupport implements 
         TwitterFactory tf = new TwitterFactory(TwitterConfigFactory.getConfig());
         Twitter twitter = tf.getInstance();
 
-        RequestToken requestToken = null;
+        RequestToken requestToken;
         try {
             requestToken = twitter.getOAuthRequestToken(
                     CritterProperties.APPLICATION_HOST_NAME +

@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 /**
- * Created by j.connal.sumlin on 4/8/2015.
+ * @author j.connal.sumlin on 4/8/2015.
  */
 @Result(location = "/landing-page", type = "redirect")
 public class DeleteCreetAction extends ActionSupport implements SessionAware{

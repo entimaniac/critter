@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 /**
- * Created by russellf on 4/9/2015.
+ * @author Russ Forstall
  */
 @RegisterMapper(GroupTwitterCredentialsMapper.class)
 public interface GroupTwitterCredentialsDao extends AutoCloseable {

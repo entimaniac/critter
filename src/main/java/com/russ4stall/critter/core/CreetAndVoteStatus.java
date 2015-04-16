@@ -18,15 +18,7 @@ public class CreetAndVoteStatus {
         return creet;
     }
 
-    public void setCreet(Creet creet) {
-        this.creet = creet;
-    }
-
     public VoteStatus getVoteStatus() {
         return voteStatus;
-    }
-
-    public void setVoteStatus(VoteStatus voteStatus) {
-        this.voteStatus = voteStatus;
     }
 }

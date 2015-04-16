@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by russ on 1/21/15.
+ * @author Russ Forstall
  */
 public class GroupMapper implements ResultSetMapper<Group> {
     public Group map(int i, ResultSet r, StatementContext statementContext) throws SQLException {

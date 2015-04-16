@@ -31,7 +31,7 @@
         </a>
     </div>
     <c:if test="${!action.linkedToTwitter}">
-        <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${group.id}">LINK TO TWITTER</a>
+        <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${action.group.id}">LINK TO TWITTER</a>
     </c:if>
 </c:if>
 
@@ -57,7 +57,7 @@
     </c:when>
 
     <c:otherwise>
-        <a class="btn btn-block btn-primary" href="${pageContext.request.contextPath}/join-group?groupId=${group.id}">JOIN THIS GROUP</a>
+        <a class="btn btn-block btn-primary" href="${pageContext.request.contextPath}/join-group?groupId=${action.group.id}">JOIN THIS GROUP</a>
     </c:otherwise>
 </c:choose>
 

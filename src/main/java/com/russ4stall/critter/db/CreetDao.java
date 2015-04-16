@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import java.util.List;
 
 /**
- * Created by russ on 1/30/15.
+ * @author Russ Forstall
  */
 @RegisterMapper(CreetMapper.class)
 public interface CreetDao extends AutoCloseable {
@@ -33,32 +33,32 @@ public interface CreetDao extends AutoCloseable {
 
 
     @SqlQuery("SELECT c.*, u.*,\n"+
-            "            (COALESCE((SELECT count(*) FROM Upvote\n"+
-            "            WHERE creet_id = c.id\n"+
-            "            GROUP BY c.id),0) -\n"+
-            "            COALESCE((SELECT count(*) FROM Downvote \n"+
-            "            WHERE creet_id = c.id\n"+
-            "            GROUP BY c.id),0)\n"+
-            "            ) as score\n"+
-            "            FROM Creet c \n"+
-            "            JOIN User u on c.user_id = u.id" +
-            "            WHERE c.id = :id \n"+
-            "            ;")
+            "(COALESCE((SELECT count(*) FROM Upvote\n"+
+            "WHERE creet_id = c.id\n"+
+            "GROUP BY c.id),0) -\n"+
+            "COALESCE((SELECT count(*) FROM Downvote \n"+
+            "WHERE creet_id = c.id\n"+
+            "GROUP BY c.id),0)\n"+
+            ") as score\n"+
+            "FROM Creet c \n"+
+            "JOIN User u on c.user_id = u.id" +
+            "WHERE c.id = :id \n"+
+            ";")
     Creet getCreet(@Bind("id") String creetId);
 
     @SqlQuery("SELECT c.*,\n" +
-            "    (COALESCE((SELECT count(*) FROM Upvote\n" +
-            "    WHERE creet_id = c.id\n" +
-            "    GROUP BY c.id),0) -\n" +
-            "    COALESCE((SELECT count(*) FROM Downvote\n" +
-            "    WHERE creet_id = c.id\n" +
-            "    GROUP BY c.id),0)\n" +
-            "            ) as score, u.name, u.email, u.password\n" +
-            "    FROM Creet c\n" +
-            "    JOIN User u ON c.user_id = u.id\n" +
-            "    JOIN UserGroupe ug ON c.group_id = ug.group_id\n" +
-            "    WHERE ug.user_id = :userId\n" +
-            "    ORDER BY timestamp DESC;")
+            "(COALESCE((SELECT count(*) FROM Upvote\n" +
+            "WHERE creet_id = c.id\n" +
+            "GROUP BY c.id),0) -\n" +
+            "COALESCE((SELECT count(*) FROM Downvote\n" +
+            "WHERE creet_id = c.id\n" +
+            "GROUP BY c.id),0)\n" +
+            ") as score, u.name, u.email, u.password\n" +
+            "FROM Creet c\n" +
+            "JOIN User u ON c.user_id = u.id\n" +
+            "JOIN UserGroupe ug ON c.group_id = ug.group_id\n" +
+            "WHERE ug.user_id = :userId\n" +
+            "ORDER BY timestamp DESC;")
     List<Creet> getCreetsForAllGroupsByUser(@Bind("userId") String userId);
 
     @SqlUpdate("UPDATE Creet set sent_to_twitter = 1 where id = :creetId;")

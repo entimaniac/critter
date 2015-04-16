@@ -3,7 +3,7 @@ package com.russ4stall.critter.core;
 import java.sql.Timestamp;
 
 /**
- * Created by russellf on 10/24/2014.
+ * @author Russ Forstall
  */
 public class Creet {
     private String id;
@@ -63,16 +63,8 @@ public class Creet {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public boolean hasBeenSentToTwitter() {
         return sentToTwitter;
-    }
-
-    public void setSentToTwitter(boolean sentToTwitter) {
-        this.sentToTwitter = sentToTwitter;
     }
 
     public int getScore() {

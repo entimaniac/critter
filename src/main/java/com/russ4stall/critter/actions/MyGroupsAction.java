@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by russ on 2/3/15.
+ * @author Russ Forstall
  */
 public class MyGroupsAction extends ActionSupport implements SessionAware {
     private List<Group> userGroups;

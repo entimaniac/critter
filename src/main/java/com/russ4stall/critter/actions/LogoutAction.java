@@ -13,6 +13,7 @@ import java.util.Map;
 @Result(location = "/login", type = "redirect")
 public class LogoutAction extends ActionSupport implements SessionAware, ServletResponseAware {
     private Map<String, Object> session;
+    @SuppressWarnings("UnusedDeclaration")
     private HttpServletResponse response;
 
     public String input() {

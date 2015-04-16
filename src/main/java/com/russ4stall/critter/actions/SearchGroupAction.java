@@ -23,10 +23,7 @@ public class SearchGroupAction extends ActionSupport {
     public void validate() {
         if(searchTerm.length() > 120){
             addFieldError("searchTerm","Try searching for a shorter group name.");
-            return;
         }
-
-
     }
 
     @Override

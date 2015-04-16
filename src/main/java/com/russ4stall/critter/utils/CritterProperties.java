@@ -9,6 +9,6 @@ public final class CritterProperties {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/critter";
     public static final String DB_USER = "critter";
     public static final String DB_PASSWORD = "critter";
-    //public static final String APPLICATION_HOST_NAME = "http://rabidwolves.com";
-    public static final String APPLICATION_HOST_NAME = "http://russforstall.com:56565";
+    public static final String APPLICATION_HOST_NAME = "http://rabidwolves.com";
+    //public static final String APPLICATION_HOST_NAME = "http://russforstall.com:56565";
 }
