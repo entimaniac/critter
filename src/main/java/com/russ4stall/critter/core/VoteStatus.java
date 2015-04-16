@@ -1,8 +1,8 @@
 package com.russ4stall.critter.core;
 
 /**
- * Created by russ on 3/24/15.
+ * @author Russ Forstall
  */
 public enum VoteStatus {
-    UPVOTED, DOWNVOTED, NONE
+    UPVOTED, DOWNVOTED, NEUTRAL
 }

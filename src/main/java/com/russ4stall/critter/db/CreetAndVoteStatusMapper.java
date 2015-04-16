@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by russ on 3/24/15.
+ * @author Russ Forstall
  */
 public class CreetAndVoteStatusMapper implements ResultSetMapper<CreetAndVoteStatus> {
     public CreetAndVoteStatus map(int i, ResultSet r, StatementContext statementContext) throws SQLException {
@@ -25,7 +25,7 @@ public class CreetAndVoteStatusMapper implements ResultSetMapper<CreetAndVoteSta
                 r.getBoolean("sent_to_twitter"),
                 r.getInt("score")
         );
-        VoteStatus voteStatus = VoteStatus.NONE;
+        VoteStatus voteStatus = VoteStatus.NEUTRAL;
         if (r.getBoolean("upvote")) {
             voteStatus = VoteStatus.UPVOTED;
         } else if (r.getBoolean("downvote")) {

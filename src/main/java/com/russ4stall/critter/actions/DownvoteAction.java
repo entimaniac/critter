@@ -10,7 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 /**
- * Created by russ on 1/30/15.
+ * @author Russ Forstall
  */
 public class DownvoteAction extends ActionSupport implements SessionAware {
     private String creetId;
@@ -22,11 +22,12 @@ public class DownvoteAction extends ActionSupport implements SessionAware {
         User user = (User) session.get("user");
 
         try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)) {
-            if (voteStatus == VoteStatus.UPVOTED) {
+            if (voteStatus == VoteStatus.NEUTRAL) {
+                creetDao.downvote(creetId, user.getId());
+            } else if (voteStatus == VoteStatus.UPVOTED) {
                 creetDao.removeUpvote(creetId, user.getId());
                 creetDao.downvote(creetId, user.getId());
-            }
-            else if (voteStatus == VoteStatus.DOWNVOTED) {
+            } else if (voteStatus == VoteStatus.DOWNVOTED) {
                 creetDao.removeDownvote(creetId, user.getId());
             }
         }
