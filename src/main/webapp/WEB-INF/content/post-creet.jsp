@@ -15,7 +15,7 @@
         function getCharCount() {
             var count = $('#message-field').val().length;
             var remaining = 120 - count;
-            $('#chars-left').html(remaining+ " characters remaining");
+            $('#chars-left').html(remaining + " characters remaining");
         }
 
         $( document ).ready(function() {
@@ -23,9 +23,6 @@
                 getCharCount();
             });
         });
-
-
-
     </script>
 </head>
 <body>
@@ -68,15 +65,6 @@
             <p><a href="${pageContext.request.contextPath}search-group">Click here to search for groups to join!</a></p>
         </c:otherwise>
     </c:choose>
-
-
-    <script> $(function(){
-        $("#message-field").characterCounter({
-            limit: '120',
-            counterFormat: '%l / 120'
-        });
-    }         );
-    </script>
 
 </body>
 </html>

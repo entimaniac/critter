@@ -20,6 +20,12 @@ public interface UserDao extends AutoCloseable {
     @SqlQuery("SELECT * FROM User WHERE email = :email;")
     User getUserByEmail(@Bind("email") String email);
 
+    @SqlQuery("SELECT * FROM User WHERE id = :userId;")
+    User getUserById(@Bind("userId") String userId);
+
     @SqlQuery("SELECT count(*) FROM UserGroupe WHERE user_id = :userId AND group_id = :groupId;")
     boolean isUserGroupMember(@Bind("userId") String userId, @Bind("groupId") String groupId);
+
+    @SqlUpdate("UPDATE User SET password = :password WHERE id = :userId")
+    void changePassword(@Bind("userId") String userId, @Bind("password") String password);
 }

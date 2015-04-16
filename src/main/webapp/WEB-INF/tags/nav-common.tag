@@ -26,7 +26,7 @@
             <a href="#" class="menu-toggle">
                 <img src="${pageContext.request.contextPath}/assets/img/menu-bars-32.png" height="16" width="16">
                 <br/>
-                <span>MENU</span>
+                <span>MORE</span>
             </a>
         </li>
     </ul>
@@ -38,6 +38,9 @@
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/create-group">Create A Group</a>
+        </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/change-password">Change Password</a>
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/logout">LOG OUT</a>
