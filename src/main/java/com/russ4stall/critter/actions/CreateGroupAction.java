@@ -71,6 +71,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
 
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             if (isEdit) {
+
+                //THIS IMPLEMENTATION HAS BEEN MOVED TO ITS OWN PAGE
+
                 Group group = groupDao.getGroupById(groupId);
                 //verify user has permission to update group
                 if(!user.getId().equals(group.getOwner())) {

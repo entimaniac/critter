@@ -21,7 +21,7 @@ public interface GroupDao extends AutoCloseable {
                      @Bind("threshold") int threshold,
                      @Bind("owner") String owner);
 
-    @SqlUpdate("UPDATE Groupe SET name=:name, twitter_handle = :twitterHandle, description = :description, threshold = :threshold owner WHERE id = :id")
+    @SqlUpdate("UPDATE Groupe SET name=:name, twitter_handle = :twitterHandle, description = :description, threshold = :threshold WHERE id = :id")
     void updateGroup(@Bind("id") String id,
                      @Bind("name") String name,
                      @Bind("twitterHandle") String twitterHandle,

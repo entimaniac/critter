@@ -17,33 +17,40 @@
 <body>
 <app:nav-common/>
 
-<h1>${action.group.name}</h1>
-
 <c:if test="${action.group.owner == sessionScope.get('user').id}">
-    <div class="edit-group-settings-button">
-        <a href="${pageContext.request.contextPath}/create-group?groupId=${action.group.id}&isEdit=True">
-            <img src="${pageContext.request.contextPath}/assets/img/settings-32.png"><span>Settings</span>
-        </a>
+    <div>
+        <h1>
+            ${action.group.name}
+
+            <a style='float: right' href="${pageContext.request.contextPath}/group-settings?groupId=${action.group.id}">
+                <img src="${pageContext.request.contextPath}/assets/img/settings-32.png">
+            </a>
+         </h1>
     </div>
-    <div class="edit-group-settings-button">
-        <a href="${pageContext.request.contextPath}/delete-group?groupId=${action.group.id}&name=${action.group.name}">
-            <img src="${pageContext.request.contextPath}/assets/img/trash-delete-32.png"><span>Delete Group</span>
-        </a>
-    </div>
-    <c:if test="${!action.linkedToTwitter}">
+
+    <c:if test="${false == true}">
         <a class="btn btn-block btn-primary" target="_blank" href="${pageContext.request.contextPath}/request-twitter-authorization?groupId=${action.group.id}">LINK TO TWITTER</a>
     </c:if>
+
 </c:if>
 
 <c:if test="${action.group.owner != sessionScope.get('user').id}">
-    <div class="leave-group-btn btn">
-        <a href="${pageContext.request.contextPath}/leave-group?groupId=${action.group.id}&isEdit=True">
-            Leave group
-        </a>
-    </div>
+    <div><h1>
+        ${action.group.name}
+        <c:if test="${action.groupMember}">
+            <a style='float: right;' href="${pageContext.request.contextPath}/leave-group?groupId=${action.group.id}&isEdit=True">
+                <img src="${pageContext.request.contextPath}/assets/img/leave-group.png">
+            </a>
+        </c:if>
+    </h1></div>
 </c:if>
 
-<h3>${action.group.twitterHandle}</h3>
+<h3>
+${action.group.twitterHandle}
+<c:if test="${action.linkedToTwitter}">
+    <img src="${pageContext.request.contextPath}/assets/img/twitter-bird-blue-16x16.png">
+</c:if>
+</h3>
 <p>
     ${action.group.description}
 </p>
