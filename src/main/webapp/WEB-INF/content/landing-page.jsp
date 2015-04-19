@@ -23,9 +23,16 @@
         </c:forEach>"
     </c:when>
     <c:otherwise>
-        <p>Either you are not a part of any groups, or nobody in your groups have posted any Creets.</p>
-        <p><a href="${pageContext.request.contextPath}post-creet">Click here to post a Creet!</a></p>
-        <p><a href="${pageContext.request.contextPath}search-group">Click here to search for groups to join!</a></p>
+        <div align="center">
+            <br/>
+            <h2>Looking pretty lonely in here!</h2>
+            <br/><br/><br/>
+            <div style="width: 40%">
+                <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}post-creet">POST A CREET</a></p>
+                <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}search-group">SEARCH GROUPS</a></p>
+                <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}create-group">CREATE A GROUP</a></p>
+            </div>
+        </div>
     </c:otherwise>
 </c:choose>
 

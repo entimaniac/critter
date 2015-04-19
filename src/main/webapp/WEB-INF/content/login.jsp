@@ -17,9 +17,12 @@
 
 
 
-            <div class="center-block title">
-                 <h2>CRITTER</h2>
-            </div>
+       <div class="center-block title">
+           <h2>CRITTER</h2>
+           <p style="text-align: center; display: block">
+               <img src="${pageContext.request.contextPath}/assets/img/240blue.png">
+           </p>
+       </div>
 
 
         <div class="center-block user-form">
