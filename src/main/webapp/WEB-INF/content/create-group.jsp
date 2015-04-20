@@ -15,7 +15,7 @@
         <app:nav-back title="Edit Settings"/>
     </c:when>
     <c:otherwise>
-        <app:nav-back title="Create a Group"/>
+        <app:nav-back title="<img src='${pageContext.request.contextPath}/assets/img/CreateAGroupTXT.png'>"/>
     </c:otherwise>
 </c:choose>
 

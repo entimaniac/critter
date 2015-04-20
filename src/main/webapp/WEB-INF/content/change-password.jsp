@@ -12,7 +12,7 @@
     <title>CRITTER</title>
 </head>
 <body>
-<app:nav-back title="CHANGE PASSWORD"/>
+<app:nav-back title="<img src='${pageContext.request.contextPath}/assets/img/ChangePasswordTXT.png'>"/>
 
 <br>
             <div class="center-block user-form">

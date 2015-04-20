@@ -26,7 +26,7 @@
     </script>
 </head>
 <body>
-    <app:nav-back title="POST"/>
+    <app:nav-back title="<img src='${pageContext.request.contextPath}/assets/img/PostTXT.png'>"/>
 
     <c:choose>
         <c:when test="${action.userGroups.size() > 0}">

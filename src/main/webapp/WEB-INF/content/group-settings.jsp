@@ -15,7 +15,7 @@
     <title>GROUP SETTINGS</title>
 </head>
 <body>
-<app:nav-back title="Group Settings"/>
+<app:nav-back title="<img src='${pageContext.request.contextPath}/assets/img/GroupSettingsTXT.png'>"/>
 <c:choose>
 <c:when test="${action.group.owner == sessionScope.get('user').id}">
     <div class="center-block user-form">

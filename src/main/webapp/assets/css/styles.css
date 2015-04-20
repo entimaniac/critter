@@ -12,7 +12,6 @@ nav {
     max-width: 1000px;
     background: #f0f0f0;
     border: 1px solid #ccc;
-    border-right: none;
     border-left: none;
     position: fixed;
     top:0;
@@ -76,6 +75,7 @@ nav ul li a:hover {
     position: fixed;
     top:48px;
     right:0;
+
     /*padding:5px 10px;*/
 }
 
@@ -141,7 +141,7 @@ nav ul li a:hover {
 }
 
 .group-list-display-owner {
-    color: green;
+    color: #4099ff;
     float: right;
 }
 

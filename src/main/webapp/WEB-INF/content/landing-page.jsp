@@ -26,6 +26,7 @@
         <div align="center">
             <br/>
             <h2>Looking pretty lonely in here!</h2>
+            <img src="${pageContext.request.contextPath}/assets/img/180blue.png">
             <br/><br/><br/>
             <div style="width: 40%">
                 <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}post-creet">POST A CREET</a></p>

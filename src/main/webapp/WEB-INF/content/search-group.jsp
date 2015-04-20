@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<app:nav-back title="GROUP SEARCH"/>
+<app:nav-back title="<img src='${pageContext.request.contextPath}/assets/img/GroupSearchTxt.png'>"/>
 
 
     <div class="center-block user-form">
@@ -32,7 +32,10 @@
                     <a class="group-list-display-name" href="${pageContext.request.contextPath}/group-page?groupId=${group.id}">
                             ${group.name}
                         <c:if test="${group.owner == sessionScope.get('user').id}">
-                            <span class="group-list-display-owner">owner</span>
+                            <span class="group-list-display-owner">
+                                owner
+                                <img src="${pageContext.request.contextPath}/assets/img/32blue.png">
+                            </span>
                         </c:if>
                     </a>
                 </div>

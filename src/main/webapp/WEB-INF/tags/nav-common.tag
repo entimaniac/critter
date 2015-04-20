@@ -43,7 +43,7 @@
             <a href="${pageContext.request.contextPath}/change-password">Change Password</a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/logout">LOG OUT</a>
+            <a href="${pageContext.request.contextPath}/logout">Logout</a>
         </li>
     </ul>
 </div>

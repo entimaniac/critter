@@ -13,9 +13,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="center-block title" >
-            <h2>CRITTER</h2>
-        </div>
+        <p style="text-align: center; display: block">
+            <img src="${pageContext.request.contextPath}/assets/img/critterTXTsqrl.png">
+        </p>
+        <br/>
     </div>
 
     <div class="center-block user-form">
