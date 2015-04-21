@@ -53,8 +53,7 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a class="btn btn-block btn-danger" target="_blank"
-                       href="${pageContext.request.contextPath}/unlink-twitter?groupId=${action.group.id}">
+                    <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/unlink-twitter?groupId=${action.group.id}">
                         UNLINK FROM TWITTER
                     </a>
                 </c:otherwise>
