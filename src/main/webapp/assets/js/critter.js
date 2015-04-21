@@ -17,6 +17,19 @@ function initCreet() {
             creet.find('.downvote-btn').addClass('button-downvoted');
         }
 
+        //Delete Creet functionality
+        creet.find('.delete-creet').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/delete-creet",
+                data: {creetId: creetId}
+            })
+                .done(function (msg) {
+                    creet.hide('slow');
+                });
+        });
+
+
         //Upvote functionality
         creet.find('.upvote-btn').click(function () {
             $.ajax({

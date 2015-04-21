@@ -42,7 +42,7 @@
                 </div>
                 <div style="display: inline">
                     <button type="submit" class="btn btn-block btn-primary">SAVE CHANGES</button>
-
+                    <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL CHANGES</a>
                 </div>
             </form>
             <c:choose>
@@ -59,7 +59,7 @@
                 </c:otherwise>
             </c:choose>
             <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/delete-group?name=${action.group.name}&groupId=${action.groupId}">DELETE ${action.group.name}</a>
-            <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL CHANGES</a>
+
         </div>
     </c:when >
     <c:otherwise>
