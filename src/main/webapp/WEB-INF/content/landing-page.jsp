@@ -28,7 +28,7 @@
             <h2>Looking pretty lonely in here!</h2>
             <img src="${pageContext.request.contextPath}/assets/img/180blue.png">
             <br/><br/><br/>
-            <div style="width: 40%">
+            <div style="width: 60%">
                 <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}post-creet">POST A CREET</a></p>
                 <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}search-group">SEARCH GROUPS</a></p>
                 <p><a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}create-group">CREATE A GROUP</a></p>

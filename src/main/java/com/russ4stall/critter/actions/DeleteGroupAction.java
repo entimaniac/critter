@@ -24,7 +24,7 @@ public class DeleteGroupAction extends ActionSupport implements SessionAware {
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             if (!groupDao.getGroupById(groupId).getOwner().equals(user.getId())) {
                 addFieldError("password", "You don't own this group!");
-                return "error";
+                return "accessDenied";
             }
         }
 
