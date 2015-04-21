@@ -48,7 +48,7 @@
     </c:if>
 
     <h3>
-        <a href="http://twitter.com/${action.group.twitterHandle}">
+        <a target="_blank" href="http://twitter.com/${action.group.twitterHandle}">
             @${action.group.twitterHandle}
             <c:if test="${action.linkedToTwitter}">
                 <img src="${pageContext.request.contextPath}/assets/img/twitter-bird-blue-16x16.png">
