@@ -16,6 +16,11 @@
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/content/error.jsp</location>
+    </error-page>
+
     <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>

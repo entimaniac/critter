@@ -9,7 +9,7 @@
     <constant name="struts.mapper.class" value="customDefaultMapper" />
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
-    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.devMode" value="false"/>
     <constant name="struts.convention.default.parent.package" value="default"/>
 
     <package name="default" namespace="/" extends="convention-default">
@@ -53,7 +53,22 @@
                 <param name="namespace">/</param>
                 <param name="actionName">login</param>
             </result>
+
+            <result name="error" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">error</param>
+            </result>
+
+            <result name="accessDenied" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">access-denied</param>
+            </result>
         </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings>
+
     </package>
 
 </struts>
