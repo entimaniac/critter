@@ -23,7 +23,7 @@
         </div>
         <div class="creet-footer">
             <c:if test="${creet.author.id == sessionScope.get('user').id}">
-            <a href="${pageContext.request.contextPath}/delete-creet?creetId=${creet.id}">
+            <a class="delete-creet" href="#">
                 <img src="${pageContext.request.contextPath}/assets/img/delete-creet-18.png">
             </a>
             </c:if>

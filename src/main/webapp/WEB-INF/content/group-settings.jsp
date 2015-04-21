@@ -42,7 +42,7 @@
                 </div>
                 <div style="display: inline">
                     <button type="submit" class="btn btn-block btn-primary">SAVE CHANGES</button>
-
+                    <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL CHANGES</a>
                 </div>
             </form>
             <c:choose>
@@ -53,13 +53,13 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a class="btn btn-block btn-danger" target="_blank"
-                       href="${pageContext.request.contextPath}/unlink-twitter?groupId=${action.group.id}">
+                    <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/unlink-twitter?groupId=${action.group.id}">
                         UNLINK FROM TWITTER
                     </a>
                 </c:otherwise>
             </c:choose>
-            <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL</a>
+            <a class="btn btn-block btn-danger" href="${pageContext.request.contextPath}/delete-group?name=${action.group.name}&groupId=${action.groupId}">DELETE ${action.group.name}</a>
+
         </div>
     </c:when >
     <c:otherwise>

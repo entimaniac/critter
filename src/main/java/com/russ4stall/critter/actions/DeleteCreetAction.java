@@ -13,18 +13,17 @@ import java.util.Map;
 /**
  * @author j.connal.sumlin on 4/8/2015.
  */
-@Result(location = "/landing-page", type = "redirect")
 public class DeleteCreetAction extends ActionSupport implements SessionAware{
     private String creetId;
     private Map<String, Object> session;
 
 
     @Override
-    public String input() throws Exception {
+    public String execute() throws Exception {
         User user = (User) session.get("user");
         try (CreetDao creetDao = new DbiFactory().getDbi().open(CreetDao.class)){
             if(!creetDao.getCreetAuthorById(creetId).equals(user.getId())) {
-                return "error";
+                return "accessDenied";
             }
             creetDao.deleteCreet(creetId, user.getId());
         }
