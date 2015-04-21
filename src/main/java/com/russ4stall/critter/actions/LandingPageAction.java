@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class LandingPageAction extends ActionSupport implements SessionAware {
     private List<CreetAndVoteStatus> creets;
-
     Map<String, Object> session;
 
     public String input() throws Exception {

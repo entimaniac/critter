@@ -1,5 +1,6 @@
 package com.russ4stall.critter.db;
 
+import com.russ4stall.critter.utils.CritterProperties;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -12,7 +13,11 @@ public class DbiFactory {
     private DBI dbi;
 
     public DbiFactory() {
-        dbi = new DBI("jdbc:mysql://localhost:3306/critter", "critter", "critter");
+        dbi = new DBI(
+                CritterProperties.DB_URL,
+                CritterProperties.DB_USER,
+                CritterProperties.DB_PASSWORD
+        );
     }
 
     public DBI getDbi() {

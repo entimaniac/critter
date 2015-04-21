@@ -17,11 +17,14 @@
         <span class="text-danger">${error.value}</span><br/>
     </c:forEach>
 
+    <br>
+    <h2>Are you sure you want to delete ${action.name}?</h2>
+    <br>
     <form role="form" action="${pageContext.request.contextPath}/delete-group" method="post">
-        <h2 class="">Are you sure?</h2>
         <input type="hidden" name="groupId" value="${action.groupId}">
-        <button type="submit" class="btn btn-primary btn-block">DELETE GROUP</button>
-        <a class="btn btn-primary btn-block" href="${pageContext.request.contextPath}/login">CANCEL</a>
+        <button type="submit" class="btn btn-primary btn-block">DELETE ${action.name}</button>
+        <a class="btn btn-primary btn-block"
+           href="${pageContext.request.contextPath}/group-page?groupId=${action.groupId}">CANCEL</a>
     </form>
 </div>
 

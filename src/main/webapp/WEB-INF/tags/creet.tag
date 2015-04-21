@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="creet" required="true" type="com.russ4stall.critter.core.Creet" %>
 <%@ attribute name="voteStatus" required="false" type="com.russ4stall.critter.core.VoteStatus" %>
+
 
 <div class="creet creet-container" data-creet-id="${creet.id}" data-vote-status="${voteStatus}">
     <div class="score-container" data-creet-id="${creet.id}">
@@ -18,6 +20,13 @@
         </div>
         <div class="creet-message">
             ${creet.message}
+        </div>
+        <div class="creet-footer">
+            <c:if test="${creet.author.id == sessionScope.get('user').id}">
+            <a href="${pageContext.request.contextPath}/delete-creet?creetId=${creet.id}">
+                <img src="${pageContext.request.contextPath}/assets/img/delete-creet-18.png">
+            </a>
+            </c:if>
         </div>
     </div>
 </div>

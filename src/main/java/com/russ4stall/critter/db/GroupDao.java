@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import java.util.List;
 
 /**
- * Created by russ on 1/21/15.
+ * @author Russ Forstall
  */
 @RegisterMapper(GroupMapper.class)
 public interface GroupDao extends AutoCloseable {
@@ -21,7 +21,7 @@ public interface GroupDao extends AutoCloseable {
                      @Bind("threshold") int threshold,
                      @Bind("owner") String owner);
 
-    @SqlUpdate("UPDATE Groupe SET name=:name, twitter_handle = :twitterHandle, description = :description, threshold = :threshold owner WHERE id = :id")
+    @SqlUpdate("UPDATE Groupe SET name=:name, twitter_handle = :twitterHandle, description = :description, threshold = :threshold WHERE id = :id")
     void updateGroup(@Bind("id") String id,
                      @Bind("name") String name,
                      @Bind("twitterHandle") String twitterHandle,
@@ -47,12 +47,21 @@ public interface GroupDao extends AutoCloseable {
      * Creates a relationship between a user and a group
      * in the UserGroupe table.
      *
-     * @param userId
-     * @param groupId
+     * @param userId The id of the user.
+     * @param groupId The id of the group.
      */
     @SqlUpdate("INSERT INTO UserGroupe (user_id, group_id) VALUES (:userId, :groupId)")
     void joinGroup(@Bind("userId") String userId, @Bind("groupId") String groupId);
 
+    /**
+     * Removes a relationship between a user and a group
+     * in the UserGroupe table.
+     *
+     * @param userId The id of the user.
+     * @param groupId The id of the group.
+     */
+    @SqlUpdate("DELETE FROM UserGroupe WHERE user_id = :userId AND group_id = :groupId")
+    void leaveGroup(@Bind("userId") String userId, @Bind("groupId") String groupId);
 
     @SqlQuery("SELECT * FROM Groupe WHERE name LIKE :searchTerm")
     List<Group> searchForGroupsByName(@Bind("searchTerm") String searchTerm);
@@ -60,7 +69,7 @@ public interface GroupDao extends AutoCloseable {
     @SqlUpdate("DELETE FROM Groupe WHERE id = :id")
     void deleteGroup(@Bind("id") String id);
 
-    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :group_id")
-    void deleteUserGroup( @Bind("group_id") String group_id);
+    @SqlUpdate("DELETE FROM UserGroupe WHERE group_id = :groupId")
+    void deleteUserGroup(@Bind("groupId") String group_id);
 
 }

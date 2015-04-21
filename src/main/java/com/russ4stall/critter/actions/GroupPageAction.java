@@ -4,21 +4,19 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.russ4stall.critter.core.CreetAndVoteStatus;
 import com.russ4stall.critter.core.Group;
 import com.russ4stall.critter.core.User;
-import com.russ4stall.critter.db.CreetAndVoteStatusDao;
-import com.russ4stall.critter.db.DbiFactory;
-import com.russ4stall.critter.db.GroupDao;
-import com.russ4stall.critter.db.UserDao;
+import com.russ4stall.critter.db.*;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by russ on 1/29/15.
+ * @author Russ Forstall
  */
 public class GroupPageAction extends ActionSupport implements SessionAware {
     private String groupId;
     private Group group;
+    private boolean linkedToTwitter;
     private List<CreetAndVoteStatus> creets;
     private boolean groupMember;
     private Map<String, Object> session;
@@ -33,6 +31,11 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
 
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             group = groupDao.getGroupById(groupId);
+        }
+
+        try (GroupTwitterCredentialsDao groupTwitterCredentialsDao =
+                     new DbiFactory().getDbi().open(GroupTwitterCredentialsDao.class)) {
+            linkedToTwitter = groupTwitterCredentialsDao.hasTwitterCredentials(groupId);
         }
 
         //if user isn't in group -> return
@@ -57,6 +60,10 @@ public class GroupPageAction extends ActionSupport implements SessionAware {
 
     public Group getGroup() {
         return group;
+    }
+
+    public boolean isLinkedToTwitter() {
+        return linkedToTwitter;
     }
 
     public List<CreetAndVoteStatus> getCreets() {

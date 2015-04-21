@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Created by russ on 1/30/15.
+ * @author Russ Forstall
  */
 @Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class PostCreetAction extends ActionSupport implements SessionAware {
@@ -34,6 +34,15 @@ public class PostCreetAction extends ActionSupport implements SessionAware {
         }
 
         return INPUT;
+    }
+
+    @Override
+    public void validate() {
+
+        if(message.length() > 120){
+            addFieldError("message","Alright Tolstoy...let's keep this to less than 120 characters!");
+        }
+
     }
 
     @Override

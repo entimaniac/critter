@@ -8,35 +8,15 @@
 <head>
     <app:head-common/>
     <title>REGISTER</title>
-   <%-- <style>
-        body {
-            margin-top: 40px;
-            background-color: #343838;
-        }
-
-        .center-block {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .user-form {
-            max-width: 300px;
-        }
-
-        .title {
-            width: 140px;
-            margin-bottom: 40px;
-        }
-
-    </style>--%>
-
 </head>
 <body>
 
 <div class="container">
     <div class="row">
-        <div class="center-block title" >
-            <h2>CRITTER</h2>
-        </div>
+        <p style="text-align: center; display: block">
+            <img src="${pageContext.request.contextPath}/assets/img/critterTXTsqrl.png">
+        </p>
+        <br/>
     </div>
 
     <div class="center-block user-form">
@@ -45,16 +25,16 @@
         </c:forEach>
         <form role="form" action="${pageContext.request.contextPath}/register" method="post">
             <div class="form-group">
-                <input id="name-field" class="form-control"  name="name" type="text" value="${action.name}" placeholder="NAME">
+                <input id="name-field" class="form-control"  name="name" maxlength="45" type="text" value="${action.name}" placeholder="NAME">
             </div>
             <div class="form-group">
-                <input id="email-field" class="form-control" name="email" type="email" value="${action.email}" placeholder="EMAIL">
+                <input id="email-field" class="form-control" name="email" maxlength="45" type="email" value="${action.email}" placeholder="EMAIL">
             </div>
             <div class="form-group">
-                <input id="password-field" class="form-control" name="password" type="password" placeholder="PASSWORD">
+                <input id="password-field" class="form-control" name="password" maxlength="20" type="password" placeholder="PASSWORD">
             </div>
             <div class="form-group">
-                <input id="confirm-password-field" class="form-control" name="confirmPassword" type="password" placeholder="RETYPE PASSWORD">
+                <input id="confirm-password-field" class="form-control" name="confirmPassword" maxlength="20" type="password" placeholder="RETYPE PASSWORD">
             </div>
 
             <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>

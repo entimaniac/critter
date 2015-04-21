@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by russ on 1/30/15.
+ * @author Russ Forstall
  */
 public class CreetMapper implements ResultSetMapper<Creet> {
     public Creet map(int i, ResultSet r, StatementContext statementContext) throws SQLException {

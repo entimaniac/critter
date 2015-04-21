@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
  * user to be logged in.
  *
  * This is used in the LoginCheckInterceptor.
+ *
+ * @author Russ Forstall
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

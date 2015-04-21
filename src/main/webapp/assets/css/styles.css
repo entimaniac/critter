@@ -1,6 +1,5 @@
 body {
     margin-top: 50px;
-    overflow: hidden;
     background-color: #f0f0f0;
     max-width: 1000px;
     margin-left: auto;
@@ -10,9 +9,10 @@ body {
 
 nav {
     width: 100%;
+    max-width: 1000px;
     background: #f0f0f0;
     border: 1px solid #ccc;
-    border-right: none;
+    border-left: none;
     position: fixed;
     top:0;
 }
@@ -75,6 +75,7 @@ nav ul li a:hover {
     position: fixed;
     top:48px;
     right:0;
+
     /*padding:5px 10px;*/
 }
 
@@ -140,12 +141,12 @@ nav ul li a:hover {
 }
 
 .group-list-display-owner {
-    color: green;
+    color: #4099ff;
     float: right;
 }
 
 .edit-group-settings-button {
-    width: 120px;
+    width: 40px;
     border-radius: 2px;
     padding: 4px;
     border: 1px solid cornflowerblue;
@@ -177,7 +178,7 @@ nav ul li a:hover {
 .creet-container .score-container {
     float:left;
     width:40px;
-    margin-right: 10px  ;
+    margin-right: 10px;
 }
 
 .creet-container .creet-score {
@@ -201,6 +202,10 @@ nav ul li a:hover {
     padding-left: 4px;
 }
 
+.upvote-btn:hover, .downvote-btn:hover {
+    cursor: pointer;
+}
+
 .downvote-btn {
     padding-left: 4px;
 }
@@ -219,6 +224,11 @@ nav ul li a:hover {
     /*float: left;*/
 }
 
+.creet-container .creet-footer {
+    float: right;
+    position: relative;
+}
+
 .creet-container .creet-author {
     width:auto;
     color: gray;
@@ -231,7 +241,7 @@ nav ul li a:hover {
 
 .creet-container .creet-message {
     float:left;
-
+    width: 83%;
 }
 
 abbr[title] {

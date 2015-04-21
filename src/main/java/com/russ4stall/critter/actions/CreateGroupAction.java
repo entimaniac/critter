@@ -14,7 +14,7 @@ import java.util.UUID;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 /**
- * Created by russ on 1/27/15.
+ * @author Russ Forstall
  */
 @Result(location = "/group-page", type = "redirect", params = {"groupId", "${groupId}"})
 public class CreateGroupAction extends ActionSupport implements SessionAware {
@@ -45,6 +45,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         if (isEmpty(name)) {
             addFieldError("name", "Don't leave name blank dummy!");
             return;
+        }else if(name.length() > 45) {
+            addFieldError("name","Woooooah, let's keep this on a two name basis");
+            return;
         }
 
         if (threshold < 0) {
@@ -55,7 +58,6 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             if (groupDao.getGroupByName(name) != null) {
                 addFieldError("name", "Already exists poser!");
-                return;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,11 +69,12 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
         User user = (User) session.get("user");
         groupId = UUID.randomUUID().toString();
 
-        Group group;
-
         try (GroupDao groupDao = new DbiFactory().getDbi().open(GroupDao.class)) {
             if (isEdit) {
-                group = groupDao.getGroupById(groupId);
+
+                //THIS IMPLEMENTATION HAS BEEN MOVED TO ITS OWN PAGE
+
+                Group group = groupDao.getGroupById(groupId);
                 //verify user has permission to update group
                 if(!user.getId().equals(group.getOwner())) {
                     return "error";
@@ -80,11 +83,9 @@ public class CreateGroupAction extends ActionSupport implements SessionAware {
                 groupDao.updateGroup(groupId, name, twitterHandle, description, threshold);
 
             } else {
-                group = new Group(groupId, name, twitterHandle, description, user.getId());
-                groupDao.createGroup(group.getId(), name, twitterHandle, description, threshold, user.getId());
-
+                groupDao.createGroup(groupId, name, twitterHandle, description, threshold, user.getId());
                 //automatically join the group creator to the group
-                groupDao.joinGroup(user.getId(), group.getId());
+                groupDao.joinGroup(user.getId(), groupId);
             }
         }
 
